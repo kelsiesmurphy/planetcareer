@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { useState } from "react";
 import router from "next/router";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import Image from "next/image";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const LoginScreen = ({ setAuthType, font }: any) => {
   const supabase = useSupabaseClient();
@@ -17,6 +17,7 @@ const LoginScreen = ({ setAuthType, font }: any) => {
         password: password,
       });
       if (error) throw error;
+      return data;
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {

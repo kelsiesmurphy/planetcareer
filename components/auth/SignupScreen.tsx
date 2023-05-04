@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Image from "next/image";
 import router from "next/router";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const SignupScreen = ({ setAuthType, font }: any) => {
   const supabase = useSupabaseClient();
@@ -10,13 +10,17 @@ const SignupScreen = ({ setAuthType, font }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = async (e: { preventDefault: () => void; }) => {
+  const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-
     try {
       const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
+        options: {
+          data: {
+            first_name: firstName,
+          },
+        },
       });
       if (error) throw error;
       return data;
