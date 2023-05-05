@@ -3,15 +3,23 @@ import TableLine from "./TableLine";
 import AddApplication from "./application_form/AddApplication";
 import { createJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
 import { getApplicationsByPeriod } from "@/handlers/ApplicationHandler";
+import { getAllStages } from "@/handlers/StageHandler";
 
 const Table = ({ userProfile, supabase }: any) => {
   const [jobApplicationPeriod, setJobApplicationPeriod] = useState([]);
+  const [stages, setStages] = useState<any>([]);
   const [tableLines, setTableLines] = useState([]);
+
+  const getStages = async () => {
+    getAllStages(supabase).then((stages) => {
+      setStages(stages);
+    });
+  };
 
   async function getApplications(jobApplicationPeriod: any) {
     try {
-      getApplicationsByPeriod(supabase, jobApplicationPeriod).then((applications) =>
-        setTableLines(applications)
+      getApplicationsByPeriod(supabase, jobApplicationPeriod).then(
+        (applications) => setTableLines(applications)
       );
     } catch (error) {
       console.log(error);
@@ -21,10 +29,12 @@ const Table = ({ userProfile, supabase }: any) => {
   async function getJobApplicationPeriod(userProfile: any) {
     try {
       if (userProfile.current_application_period_id) {
-        createJobApplicationPeriod(supabase, userProfile).then((jobApplicationPeriod) => {
-          setJobApplicationPeriod(jobApplicationPeriod[0]);
-          getApplications(jobApplicationPeriod[0]);
-        });
+        createJobApplicationPeriod(supabase, userProfile).then(
+          (jobApplicationPeriod) => {
+            setJobApplicationPeriod(jobApplicationPeriod[0]);
+            getApplications(jobApplicationPeriod[0]);
+          }
+        );
       }
     } catch (error) {
       console.log(error);
@@ -33,6 +43,7 @@ const Table = ({ userProfile, supabase }: any) => {
 
   useEffect(() => {
     getJobApplicationPeriod(userProfile);
+    getStages();
   }, [userProfile]);
 
   return (
@@ -43,7 +54,7 @@ const Table = ({ userProfile, supabase }: any) => {
             Job Applications
           </h3>
         </div>
-        <AddApplication />
+        <AddApplication stages={stages} />
       </div>
       <table>
         <thead className="text-left">
@@ -83,6 +94,7 @@ const Table = ({ userProfile, supabase }: any) => {
             return (
               <TableLine
                 key={index}
+                stages={stages}
                 tableLineItem={tableLineItem}
                 supabase={supabase}
                 index={index}

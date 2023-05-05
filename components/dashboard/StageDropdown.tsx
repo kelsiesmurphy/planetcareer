@@ -1,16 +1,7 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
 export default function Dropdown({ currentStage, stages, handleChangeStage }: any) {
-  const changeStage = (stage: any) => {
-    const result = {
-      target: {
-        name: "Stage",
-        value: stage,
-      },
-    };
-    handleChangeStage(result);
-  };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -46,7 +37,7 @@ export default function Dropdown({ currentStage, stages, handleChangeStage }: an
               <Menu.Item key={index}>
                 {({ active }) => (
                   <div
-                    onClick={() => changeStage(stage)}
+                    onClick={() => handleChangeStage(stage)}
                     className={`block px-4 py-2 text-sm transition-colors ${
                       active && "bg-stone-100"
                     }`}

@@ -5,7 +5,7 @@ import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";
 import { demoStages } from "@/content/demoTableItems";
 
-const AddApplication = () => {
+const AddApplication = ({ stages }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [secondScreen, setSecondScreen] = useState(false);
 
@@ -20,10 +20,10 @@ const AddApplication = () => {
     FurtherDetails: "",
   });
 
-  console.log(values.PayRange); 
+  console.log(values.PayRange);
 
   const handleChange = (e: any) => {
-    const {name, value} = e.target
+    const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
@@ -102,6 +102,7 @@ const AddApplication = () => {
                   <FirstScreen
                     setSecondScreen={setSecondScreen}
                     handleChange={handleChange}
+                    stages={stages}
                     values={values}
                   />
                 )}

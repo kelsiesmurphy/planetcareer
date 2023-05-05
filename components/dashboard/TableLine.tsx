@@ -3,32 +3,29 @@ import Image from "next/image";
 import { Globe, Paperclip } from "react-feather";
 import Dropdown from "./StageDropdown";
 import { getAllStages } from "@/handlers/StageHandler";
+import { updateApplicationStage } from "@/handlers/ApplicationHandler";
 
-const TableLine = ({ tableLineItem, supabase }: any) => {
+const TableLine = ({ stages, tableLineItem, supabase }: any) => {
   const [tableLine, setTableLine] = useState(tableLineItem);
-  const [stages, setStages] = useState<any>([]);
-  const [currentStage, setCurrentStage] = useState<any>([]);
-
-  const getStages = async () => {
-    if (tableLine) {
-      getAllStages(supabase).then((stages) => {
-        setStages(stages);
-        setCurrentStage(stages[tableLine.stage_id]);
-      });
-    }
-  };
+  const [currentStage, setCurrentStage] = useState({});
 
   useEffect(() => {
-    getStages();
-  }, []);
+    setCurrentStage(
+      stages.filter((stage: any) => stage.id === tableLine.stage_id)[0]
+    );
+  }, [stages]);
 
-  const handleChangeStage = (stage: any) => {
-
-    
-
-    const dupTableLine = { ...tableLine };
-    dupTableLine.stage_id = stage.id;
-    setTableLine(dupTableLine);
+  const handleChangeStage = async (stage: any) => {
+    updateApplicationStage(supabase, tableLineItem, stage).then(
+      (updatedApplication) => {
+        const dupTableLine = { ...tableLine };
+        dupTableLine.stage_id = updatedApplication[0].stage_id;
+        setTableLine(dupTableLine);
+        setCurrentStage(
+          stages.filter((stage: any) => stage.id === dupTableLine.stage_id)[0]
+        );
+      }
+    );
   };
 
   return (
