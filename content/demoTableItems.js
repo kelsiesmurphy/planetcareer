@@ -112,37 +112,3 @@ export const demoTableItems = [
     further_details: "Didn't pass the second stage...",
   },
 ];
-
-export const demoRoles = [
-  {
-    id: 0,
-    title: "Fullstack Developer",
-  },
-  {
-    id: 1,
-    title: "Product Manager",
-  },
-  {
-    id: 2,
-    title: "Frontend Developer",
-  },
-  {
-    id: 3,
-    title: "Backend Developer",
-  },
-];
-
-export const demoStages = [
-  {
-    id: 0,
-    title: "Applied",
-  },
-  {
-    id: 1,
-    title: "Interviewing",
-  },
-  {
-    id: 2,
-    title: "Rejected",
-  },
-];

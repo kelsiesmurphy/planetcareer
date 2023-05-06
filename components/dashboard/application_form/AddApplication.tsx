@@ -3,7 +3,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Briefcase, Plus, X } from "react-feather";
 import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";
-import { demoStages } from "@/content/demoTableItems";
 
 const AddApplication = ({ stages }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +12,7 @@ const AddApplication = ({ stages }: any) => {
     Company: {},
     Url: "",
     PayRange: "",
-    Stage: demoStages[0],
+    Stage: stages[0],
     Role: "",
     Resume: {},
     CoverLetter: {},
