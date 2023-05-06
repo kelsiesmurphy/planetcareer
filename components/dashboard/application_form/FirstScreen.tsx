@@ -1,7 +1,6 @@
 import UrlInput from "./UrlInput";
 import StageInput from "./StageInput";
-import { demoStages } from "@/content/demoTableItems";
-import { useState } from "react";
+
 import CompanyInput from "./CompanyInput";
 
 const FirstScreen = ({
