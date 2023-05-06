@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import router from "next/router";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { createSignUp } from "@/handlers/AuthHandler";
 
 const SignupScreen = ({ setAuthType, font }: any) => {
   const supabase = useSupabaseClient();
@@ -13,24 +14,15 @@ const SignupScreen = ({ setAuthType, font }: any) => {
   const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          data: {
-            first_name: firstName,
-          },
-        },
-      });
-      if (error) throw error;
-      return data;
+      createSignUp(supabase, firstName, email, password).then(
+        (res) => res.user.id && router.push("/dashboard")
+      );
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
       setFirstName("");
       setEmail("");
       setPassword("");
-      router.push("/dashboard");
     }
   };
 

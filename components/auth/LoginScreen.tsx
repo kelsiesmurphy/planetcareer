@@ -2,6 +2,7 @@ import { useState } from "react";
 import router from "next/router";
 import Image from "next/image";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { loginUser } from "@/handlers/AuthHandler";
 
 const LoginScreen = ({ setAuthType, font }: any) => {
   const supabase = useSupabaseClient();
@@ -12,18 +13,14 @@ const LoginScreen = ({ setAuthType, font }: any) => {
   const handleLogin = async (e: any) => {
     e.preventDefault();
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-      if (error) throw error;
-      return data;
+      loginUser(supabase, email, password).then(
+        (res) => res.user.id && router.push("/dashboard")
+      );
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
       setEmail("");
       setPassword("");
-      router.push("/dashboard");
     }
   };
 
