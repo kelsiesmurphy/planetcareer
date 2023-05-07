@@ -4,7 +4,7 @@ import { useUser } from "@supabase/auth-helpers-react";
 
 const SecondScreen = ({
   setSecondScreen,
-  handleClose,
+  submitApplication,
   handleChange,
   values,
 }: any) => {
@@ -78,7 +78,10 @@ const SecondScreen = ({
         >
           Back to details
         </button>
-        <button className="btn-primary flex-1 max-w-none" onClick={handleClose}>
+        <button
+          className="btn-primary flex-1 max-w-none"
+          onClick={submitApplication}
+        >
           Add Application <ArrowUpRight />
         </button>
       </div>

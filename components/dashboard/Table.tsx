@@ -6,7 +6,7 @@ import { getApplicationsByPeriod } from "@/handlers/ApplicationHandler";
 import { getAllStages } from "@/handlers/StageHandler";
 
 const Table = ({ userProfile, supabase }: any) => {
-  const [jobApplicationPeriod, setJobApplicationPeriod] = useState([]);
+  const [jobApplicationPeriod, setJobApplicationPeriod] = useState<any>({});
   const [stages, setStages] = useState<any>([]);
   const [tableLines, setTableLines] = useState([]);
 
@@ -54,7 +54,7 @@ const Table = ({ userProfile, supabase }: any) => {
             Job Applications
           </h3>
         </div>
-        <AddApplication stages={stages} />
+        <AddApplication supabase={supabase} stages={stages} job_period_id={jobApplicationPeriod.id} userProfile={userProfile.id}/>
       </div>
       <table>
         <thead className="text-left">

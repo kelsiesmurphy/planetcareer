@@ -8,11 +8,13 @@ const StageInput = ({ label, values, stages, handleChange }: any) => {
         {label}
       </label>
       <div className="input py-2 px-3.5">
-        <Dropdown
-          values={values}
-          stages={stages}
-          handleChangeStage={handleChange}
-        />
+        {values.Stage && (
+          <Dropdown
+            values={values}
+            stages={stages}
+            handleChangeStage={handleChange}
+          />
+        )}
       </div>
     </div>
   );

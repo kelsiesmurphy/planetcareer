@@ -70,7 +70,9 @@ const TableLine = ({ stages, tableLineItem, supabase }: any) => {
         <Globe className="text-stone-400 hover:text-stone-700 transition-colors cursor-pointer" />
       </td>
       <td className="hidden lg:flex flex-1 max-w-[112px] items-center gap-3 px-4 text-sm text-stone-500">
-        {tableLine.applied_date ? tableLine.applied_date : "N/A"}
+        {tableLine.applied_date
+          ? new Date(tableLine.applied_date).toLocaleDateString("en-GB")
+          : "N/A"}
       </td>
       <td className="hidden lg:flex flex-1 items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.further_details}

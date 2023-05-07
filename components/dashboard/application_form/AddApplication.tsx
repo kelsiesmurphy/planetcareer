@@ -1,25 +1,33 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Briefcase, Plus, X } from "react-feather";
 import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";
+import { insertApplication } from "@/handlers/ApplicationHandler";
 
-const AddApplication = ({ stages }: any) => {
+const AddApplication = ({
+  supabase,
+  stages,
+  job_period_id,
+  userProfile,
+}: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [secondScreen, setSecondScreen] = useState(false);
 
-  const [values, setValues] = useState({
-    Company: {},
-    Url: "",
-    PayRange: "",
-    Stage: stages[0],
-    Role: "",
-    Resume: {},
-    CoverLetter: {},
-    FurtherDetails: "",
-  });
+  const [values, setValues] = useState({});
 
-  console.log(values.PayRange);
+  useEffect(() => {
+    setValues({
+      Company: {},
+      Url: "",
+      PayRange: "",
+      Stage: stages[0],
+      Role: "",
+      Resume: {},
+      CoverLetter: {},
+      FurtherDetails: "",
+    });
+  }, [stages]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -29,6 +37,17 @@ const AddApplication = ({ stages }: any) => {
   const handleClose = () => {
     setIsOpen(false);
     setSecondScreen(false);
+  };
+
+  const submitApplication = () => {
+    try {
+      insertApplication(supabase, values, userProfile, job_period_id);
+    } catch (error) {
+      alert("Error submitting application");
+      console.log(error);
+    } finally {
+      handleClose();
+    }
   };
 
   return (
@@ -93,7 +112,7 @@ const AddApplication = ({ stages }: any) => {
                 {secondScreen ? (
                   <SecondScreen
                     setSecondScreen={setSecondScreen}
-                    handleClose={handleClose}
+                    submitApplication={submitApplication}
                     handleChange={handleChange}
                     values={values}
                   />
