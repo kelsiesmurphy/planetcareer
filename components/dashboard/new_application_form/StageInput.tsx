@@ -1,5 +1,4 @@
 import Dropdown from "./StageDropdown";
-import { getAllStages } from "@/handlers/StageHandler";
 
 const StageInput = ({ label, values, stages, handleChange }: any) => {
   return (
