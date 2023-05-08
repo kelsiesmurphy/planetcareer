@@ -1,24 +1,33 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-export default function Dropdown({ currentStage, stages, handleChangeStage }: any) {
+export default function Dropdown({ values, stages, handleChangeStage }: any) {
+  const changeStage = (stage: any) => {
+    const result = {
+      target: {
+        name: "Stage",
+        value: stage,
+      },
+    };
+    handleChangeStage(result);
+  };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
           className={`rounded-full outline-green-700 text-sm flex gap-2 items-center py-1 px-3 font-medium ${
-            currentStage.title === "Applied"
+            values.Stage.title === "Applied"
               ? "bg-stone-200 text-stone-700"
-              : currentStage.title === "Interviewing"
+              : values.Stage.title === "Interviewing"
               ? "bg-green-100 text-green-700"
               : "bg-red-100 text-red-700"
           }`}
         >
-          {currentStage.title === "Interviewing" && (
+          {values.Stage.title === "Interviewing" && (
             <div className="w-[6px] aspect-square rounded-full bg-green-600" />
           )}
-          {currentStage ? currentStage.title : "N/A"}
+          {values.Stage ? values.Stage.title : "N/A"}
         </Menu.Button>
       </div>
 
@@ -37,7 +46,7 @@ export default function Dropdown({ currentStage, stages, handleChangeStage }: an
               <Menu.Item key={index}>
                 {({ active }) => (
                   <div
-                    onClick={() => handleChangeStage(stage)}
+                    onClick={() => changeStage(stage)}
                     className={`block px-4 py-2 text-sm transition-colors ${
                       active && "bg-stone-100"
                     }`}

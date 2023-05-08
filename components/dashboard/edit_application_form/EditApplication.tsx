@@ -1,15 +1,16 @@
 import { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Briefcase, Plus, X } from "react-feather";
+import { Briefcase, Edit, Edit2, Plus, X } from "react-feather";
 import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";
 import { insertApplication } from "@/handlers/ApplicationHandler";
 
-const AddApplication = ({
+const EditApplication = ({
   supabase,
   stages,
   job_period_id,
-  userProfile,
+  userProfileId,
+  tableLine,
 }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [secondScreen, setSecondScreen] = useState(false);
@@ -18,14 +19,17 @@ const AddApplication = ({
 
   useEffect(() => {
     setValues({
-      Company: {},
-      Url: "",
-      PayRange: "",
-      Stage: stages[0],
-      Role: "",
+      Company: {
+        name: tableLine.company_name,
+        logo: tableLine.company_logo
+      },
+      Url: tableLine.posting_url,
+      PayRange: tableLine.pay_range,
+      Stage: stages.filter((stage: any) => stage.id === tableLine.stage_id)[0],
+      Role: tableLine.role,
       Resume: {},
       CoverLetter: {},
-      FurtherDetails: "",
+      FurtherDetails: tableLine.further_details,
     });
   }, [stages]);
 
@@ -41,7 +45,7 @@ const AddApplication = ({
 
   const submitApplication = () => {
     try {
-      insertApplication(supabase, values, userProfile, job_period_id);
+      insertApplication(supabase, values, userProfileId, job_period_id);
     } catch (error) {
       alert("Error submitting application");
       console.log(error);
@@ -52,9 +56,11 @@ const AddApplication = ({
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="btn-primary">
-        <Plus size={20} />
-        New
+      <button
+        onClick={() => setIsOpen(true)}
+        className="hover:text-stone-800 transition-colors"
+      >
+        <Edit size={20} />
       </button>
 
       <Transition show={isOpen} as={Fragment}>
@@ -102,10 +108,10 @@ const AddApplication = ({
                   </div>
                   <div>
                     <h1 className="font-medium text-lg text-stone-900">
-                      New Application
+                      Edit Application
                     </h1>
                     <h1 className="text-sm text-stone-600">
-                      Add your application details here.
+                      Edit your application details here.
                     </h1>
                   </div>
                 </Dialog.Title>
@@ -133,4 +139,4 @@ const AddApplication = ({
   );
 };
 
-export default AddApplication;
+export default EditApplication;

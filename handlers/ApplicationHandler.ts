@@ -35,7 +35,7 @@ export const insertApplication = async (supabase:any, application:any, userProfi
             closing_date: null,
             further_details: application.FurtherDetails, 
             company_name: application.Company.name,
-            company_logo: application.logo,
+            company_logo: application.Company.logo,
             stage_id: application.Stage.id,
             user_profile_id: userProfileId
         }])

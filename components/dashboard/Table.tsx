@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TableLine from "./TableLine";
-import AddApplication from "./application_form/AddApplication";
+import AddApplication from "./new_application_form/AddApplication";
 import { createJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
 import { getApplicationsByPeriod } from "@/handlers/ApplicationHandler";
 import { getAllStages } from "@/handlers/StageHandler";
@@ -54,7 +54,13 @@ const Table = ({ userProfile, supabase }: any) => {
             Job Applications
           </h3>
         </div>
-        <AddApplication supabase={supabase} stages={stages} job_period_id={jobApplicationPeriod.id} userProfile={userProfile.id}/>
+        <AddApplication
+          supabase={supabase}
+          stages={stages}
+          job_period_id={jobApplicationPeriod.id}
+          userProfile={userProfile.id}
+          getApplications={getApplications}
+        />
       </div>
       <table>
         <thead className="text-left">
@@ -87,6 +93,9 @@ const Table = ({ userProfile, supabase }: any) => {
                 Further Details
               </h4>
             </th>
+            <th className="flex w-16 justify-center items-center px-4 text-stone-500">
+              
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -98,6 +107,8 @@ const Table = ({ userProfile, supabase }: any) => {
                 tableLineItem={tableLineItem}
                 supabase={supabase}
                 index={index}
+                userProfileId={userProfile.id}
+                jobApplicationId={jobApplicationPeriod.id}
               />
             );
           })}

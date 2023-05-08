@@ -3,8 +3,15 @@ import Image from "next/image";
 import { Globe, Paperclip } from "react-feather";
 import Dropdown from "./StageDropdown";
 import { updateApplicationStage } from "@/handlers/ApplicationHandler";
+import EditApplication from "./edit_application_form/EditApplication";
 
-const TableLine = ({ stages, tableLineItem, supabase }: any) => {
+const TableLine = ({
+  stages,
+  tableLineItem,
+  supabase,
+  userProfileId,
+  jobApplicationId,
+}: any) => {
   const [tableLine, setTableLine] = useState(tableLineItem);
   const [currentStage, setCurrentStage] = useState({});
 
@@ -15,7 +22,7 @@ const TableLine = ({ stages, tableLineItem, supabase }: any) => {
   }, [stages]);
 
   const handleChangeStage = async (stage: any) => {
-    updateApplicationStage(supabase, tableLineItem, stage).then(
+    updateApplicationStage(supabase, tableLine, stage).then(
       (updatedApplication) => {
         const dupTableLine = { ...tableLine };
         dupTableLine.stage_id = updatedApplication[0].stage_id;
@@ -28,12 +35,15 @@ const TableLine = ({ stages, tableLineItem, supabase }: any) => {
   };
 
   return (
-    <tr className="flex flex-1 justify-between items-center gap-1 border-b py-3 odd:bg-stone-50">
+    <tr
+      className="flex flex-1 justify-between items-center gap-1 border-b py-3 odd:bg-stone-50"
+    >
       <td className="flex flex-1 min-w-[180px] md:max-w-[190px] items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.company_logo && (
           <Image
             width="40"
             height="40"
+            unoptimized
             alt={tableLine.company_name + "company logo"}
             src={tableLine.company_logo}
             className="rounded-full"
@@ -76,6 +86,15 @@ const TableLine = ({ stages, tableLineItem, supabase }: any) => {
       </td>
       <td className="hidden lg:flex flex-1 items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.further_details}
+      </td>
+      <td className="flex w-16 justify-center items-center px-4 text-stone-500">
+        <EditApplication
+          tableLine={tableLine}
+          supabase={supabase}
+          stages={stages}
+          job_period_id={jobApplicationId}
+          userProfileId={userProfileId}
+        />
       </td>
     </tr>
   );
