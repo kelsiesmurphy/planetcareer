@@ -31,6 +31,7 @@ export const insertApplication = async (supabase:any, application:any, userProfi
             pay_range: application.PayRange,
             resume: application.Resume.url,
             cover_letter: application.CoverLetter.url,
+            role: application.Role,
             applied_date: new Date(),
             closing_date: null,
             further_details: application.FurtherDetails, 
@@ -39,6 +40,31 @@ export const insertApplication = async (supabase:any, application:any, userProfi
             stage_id: application.Stage.id,
             user_profile_id: userProfileId
         }])
+    if (error) {
+        throw error;
+    }
+    return data;
+}
+
+export const updateApplication = async (supabase:any, applicationId:any, application:any, userProfileId:number, job_period_id:number) => { 
+    const { data, error } = await supabase
+        .from('application')
+        .update([{ 
+            job_application_period_id: job_period_id, 
+            posting_url: application.Url,
+            pay_range: application.PayRange,
+            resume: application.Resume.url,
+            cover_letter: application.CoverLetter.url,
+            role: application.Role,
+            applied_date: new Date(),
+            closing_date: null,
+            further_details: application.FurtherDetails, 
+            company_name: application.Company.name,
+            company_logo: application.Company.logo,
+            stage_id: application.Stage.id,
+            user_profile_id: userProfileId
+        }])
+        .eq('id', applicationId)
     if (error) {
         throw error;
     }

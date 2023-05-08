@@ -11,11 +11,11 @@ const FirstScreen = ({
 }: any) => {
   return (
     <div className="flex flex-col gap-4">
-      <CompanyInput values="values" handleChange={handleChange} />
+      <CompanyInput values={values} handleChange={handleChange} />
       <UrlInput
         label="Posting URL"
         placeholder="www.example.com"
-        values="values"
+        values={values}
         handleChange={handleChange}
       />
       <div className="flex flex-wrap gap-4">

@@ -1,9 +1,9 @@
 import { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Briefcase, Edit, Edit2, Plus, X } from "react-feather";
+import { Briefcase, Edit, X } from "react-feather";
 import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";
-import { insertApplication } from "@/handlers/ApplicationHandler";
+import { updateApplication } from "@/handlers/ApplicationHandler";
 
 const EditApplication = ({
   supabase,
@@ -43,9 +43,9 @@ const EditApplication = ({
     setSecondScreen(false);
   };
 
-  const submitApplication = () => {
+  const submitEditedApplication = () => {
     try {
-      insertApplication(supabase, values, userProfileId, job_period_id);
+      updateApplication(supabase, tableLine.id, values, userProfileId, job_period_id);
     } catch (error) {
       alert("Error submitting application");
       console.log(error);
@@ -118,7 +118,7 @@ const EditApplication = ({
                 {secondScreen ? (
                   <SecondScreen
                     setSecondScreen={setSecondScreen}
-                    submitApplication={submitApplication}
+                    submitEditedApplication={submitEditedApplication}
                     handleChange={handleChange}
                     values={values}
                   />

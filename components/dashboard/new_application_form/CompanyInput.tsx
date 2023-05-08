@@ -117,12 +117,12 @@ const CompanyInput = ({ values, handleChange }: any) => {
                               </span>
                               {selected ? (
                                 <span
-                                  className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                                  className={`absolute inset-y-0 left-0 flex items-center pl-1 ${
                                     active ? "text-stone-800" : "text-stone-500"
                                   }`}
                                 >
                                   <Check
-                                    className="h-5 w-5"
+                                    className="h-4 w-4"
                                     aria-hidden="true"
                                   />
                                 </span>

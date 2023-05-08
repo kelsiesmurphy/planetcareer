@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const UrlInput = ({ label, placeholder, handleChange, values }: any) => {
-  const [postingUrl, setPostingUrl] = useState("");
+  const [postingUrl, setPostingUrl] = useState(values.Url);
   
   const changeInput = (url: any) => {
     const result = {

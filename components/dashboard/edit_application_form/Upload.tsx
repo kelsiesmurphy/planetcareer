@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { Database } from "../../../utils/database.types";
 import { File, Trash2, UploadCloud } from "react-feather";
 
 export default function FileUpload({
@@ -14,8 +13,8 @@ export default function FileUpload({
   onUpload: (url: string, size: number) => void;
   fileName: string;
 }) {
-  const supabase = useSupabaseClient<Database>();
-  const [fileUrl, setFileUrl] = useState<any>(null);
+  const supabase = useSupabaseClient();
+  const [fileUrl, setFileUrl] = useState<any>(url);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {

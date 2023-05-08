@@ -38,6 +38,16 @@ const AddApplication = ({
   const handleClose = () => {
     setIsOpen(false);
     setSecondScreen(false);
+    setValues({
+      Company: {},
+      Url: "",
+      PayRange: "",
+      Stage: stages[0],
+      Role: "",
+      Resume: {},
+      CoverLetter: {},
+      FurtherDetails: "",
+    });
   };
 
   const submitApplication = () => {

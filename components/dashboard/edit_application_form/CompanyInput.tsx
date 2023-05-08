@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { Check, ChevronDown, Search } from "react-feather";
 import { Combobox, Transition } from "@headlessui/react";
 import Image from "next/image";
@@ -65,7 +65,7 @@ const CompanyInput = ({ values, handleChange }: any) => {
                   <Combobox.Input
                     className="flex-1 py-2.5 pr-3.5 rounded-l-none rounded-r-lg border-none outline-none"
                     placeholder="Search for a company"
-                    displayValue={(query: { name: string }) => query.name}
+                    displayValue={(company: ICompany) => company.name}
                     onChange={updateCompanies}
                   />
                   <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -80,7 +80,6 @@ const CompanyInput = ({ values, handleChange }: any) => {
                   leave="transition ease-in duration-100"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
-                  afterLeave={() => setQuery("")}
                 >
                   <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base z-10 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                     {!Array.isArray(companies) ? (
@@ -117,12 +116,12 @@ const CompanyInput = ({ values, handleChange }: any) => {
                               </span>
                               {selected ? (
                                 <span
-                                  className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                                  className={`absolute inset-y-0 left-0 flex items-center pl-1 ${
                                     active ? "text-stone-800" : "text-stone-500"
                                   }`}
                                 >
                                   <Check
-                                    className="h-5 w-5"
+                                    className="h-4 w-4"
                                     aria-hidden="true"
                                   />
                                 </span>
@@ -131,6 +130,14 @@ const CompanyInput = ({ values, handleChange }: any) => {
                           )}
                         </Combobox.Option>
                       ))
+                    )}
+                    {query.length > 0 && (
+                      <Combobox.Option
+                        value={{ id: null, name: query }}
+                        className="py-2 px-6 text-stone-800"
+                      >
+                        Create "{query}"
+                      </Combobox.Option>
                     )}
                   </Combobox.Options>
                 </Transition>
