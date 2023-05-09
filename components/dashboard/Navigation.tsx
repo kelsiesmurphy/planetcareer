@@ -8,7 +8,17 @@ import settingsIcon from "../../assets/settings.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const Navigation = ({ profile_img, first_name }: any) => {
+const Navigation = ({
+  profile_img,
+  first_name,
+  pageSection,
+  setPageSection,
+}: {
+  profile_img: string;
+  first_name: string;
+  pageSection: "job-hunt" | "job-board" | "settings";
+  setPageSection: (param: "job-hunt" | "job-board" | "settings") => any;
+}) => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [placeholder, setPlaceholder] = useState(
     "https://xddplurlgjvqtjiyodqt.supabase.co/storage/v1/object/public/demo-applications-storage/placeholder.svg?t=2023-04-17T15%3A38%3A25.558Z"
@@ -49,7 +59,12 @@ const Navigation = ({ profile_img, first_name }: any) => {
         </div>
         {mobileNavOpen && (
           <ul className="flex flex-col gap-2">
-            <li className="flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50">
+            <li
+              className={`flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50 ${
+                pageSection === "job-hunt" && "bg-stone-100"
+              }`}
+              onClick={() => setPageSection("job-hunt")}
+            >
               <Image
                 alt="Home Icon"
                 width="0"
@@ -59,7 +74,12 @@ const Navigation = ({ profile_img, first_name }: any) => {
               />
               Home
             </li>
-            <li className="flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50">
+            <li
+              className={`flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50 ${
+                pageSection === "job-board" && "bg-stone-100"
+              }`}
+              onClick={() => setPageSection("job-board")}
+            >
               <Image
                 alt="Briefcase Icon"
                 width="0"
@@ -69,7 +89,12 @@ const Navigation = ({ profile_img, first_name }: any) => {
               />
               Application Tracker
             </li>
-            <li className="flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50">
+            <li
+              className={`flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50 ${
+                pageSection === "settings" && "bg-stone-100"
+              }`}
+              onClick={() => setPageSection("settings")}
+            >
               <Image
                 alt="Settings Icon"
                 width="0"
@@ -95,7 +120,12 @@ const Navigation = ({ profile_img, first_name }: any) => {
             />
           </Link>
           <div className="space-y-1">
-            <button className="p-3 hover:text-stone-800 transition-colors">
+            <button
+              className={`p-3 hover:text-stone-800 rounded-lg transition-colors ${
+                pageSection === "job-hunt" && "bg-stone-100"
+              }`}
+              onClick={() => setPageSection("job-hunt")}
+            >
               <Image
                 alt="Home Icon"
                 width="0"
@@ -104,7 +134,12 @@ const Navigation = ({ profile_img, first_name }: any) => {
                 src={homeIcon}
               />
             </button>
-            <button className="p-3 hover:text-stone-800 transition-colors">
+            <button
+              className={`p-3 hover:text-stone-800 rounded-lg transition-colors ${
+                pageSection === "job-board" && "bg-stone-100"
+              }`}
+              onClick={() => setPageSection("job-board")}
+            >
               <Image
                 alt="Briefcase Icon"
                 width="0"
@@ -116,7 +151,12 @@ const Navigation = ({ profile_img, first_name }: any) => {
           </div>
         </div>
         <div className="flex flex-col gap-2 items-center">
-          <button className="p-3 hover:text-stone-800 transition-colors">
+          <button
+            className={`p-3 hover:text-stone-800 rounded-lg transition-colors ${
+              pageSection === "settings" && "bg-stone-100"
+            }`}
+            onClick={() => setPageSection("settings")}
+          >
             <Image
               alt="Settings Icon"
               width="0"
