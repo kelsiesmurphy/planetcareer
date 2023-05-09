@@ -4,12 +4,15 @@ import { Globe, Paperclip } from "react-feather";
 import Dropdown from "./StageDropdown";
 import { updateApplicationStage } from "@/handlers/ApplicationHandler";
 import EditApplication from "./edit_application_form/EditApplication";
+import DeleteApplicationButton from "./DeleteApplicationButton";
 
 const TableLine = ({
   stages,
   tableLineItem,
   supabase,
   userProfileId,
+  tableLines,
+  setTableLines,
   jobApplicationId,
 }: any) => {
   const [tableLine, setTableLine] = useState(tableLineItem);
@@ -35,33 +38,31 @@ const TableLine = ({
   };
 
   return (
-    <tr
-      className="flex flex-1 justify-between items-center gap-1 border-b py-3 odd:bg-stone-50"
-    >
-      <td className="flex flex-1 min-w-[180px] md:max-w-[190px] items-center gap-3 px-4 text-sm text-stone-500">
+    <tr className="flex flex-1 justify-between items-center gap-1 border-b py-3 odd:bg-stone-50">
+      <td className="flex flex-1 min-w-[140px] md:max-w-[190px] items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.company_logo && (
           <Image
-            width="40"
-            height="40"
+            width="0"
+            height="0"
             unoptimized
             alt={tableLine.company_name + "company logo"}
             src={tableLine.company_logo}
-            className="rounded-full"
+            className="rounded-full w-6 md:w-10 aspect-square"
           />
         )}
         <p className="text-slate-900 font-medium">{tableLine.company_name}</p>
       </td>
-      <td className="flex min-w-[154px] items-center gap-3 px-4 text-sm text-stone-500">
+      <td className="flex min-w-[142px] sm:min-w-[154px] items-center gap-3 px-4 text-sm text-stone-500">
         <Dropdown
           currentStage={currentStage}
           stages={stages}
           handleChangeStage={handleChangeStage}
         />
       </td>
-      <td className="hidden md:flex min-w-[162px] items-center gap-3 px-4 text-sm text-stone-500">
+      <td className="hidden lg:flex min-w-[162px] items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.role ? tableLine.role : "N/A"}
       </td>
-      <td className="hidden sm:flex min-w-[100px] items-center gap-3 px-4 text-sm text-stone-500">
+      <td className="hidden sm:flex w-[100px] items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.pay_range ? tableLine.pay_range : "Not given"}
       </td>
       <td className="hidden xl:flex flex-1 max-w-[270px] flex-wrap items-center gap-3 px-4 text-sm text-stone-500">
@@ -84,17 +85,20 @@ const TableLine = ({
           ? new Date(tableLine.applied_date).toLocaleDateString("en-GB")
           : "N/A"}
       </td>
-      <td className="hidden lg:flex flex-1 items-center gap-3 px-4 text-sm text-stone-500">
+      <td className="hidden xl:flex flex-1 items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.further_details}
       </td>
-      <td className="flex w-16 justify-center items-center px-4 text-stone-500">
+      <td className="flex w-24 justify-center items-center gap-4 px-4 text-stone-500">
         <EditApplication
           tableLine={tableLine}
           supabase={supabase}
           stages={stages}
           job_period_id={jobApplicationId}
           userProfileId={userProfileId}
+          tableLines={tableLines}
+          setTableLines={setTableLines}
         />
+        <DeleteApplicationButton tableLine={tableLine} supabase={supabase} />
       </td>
     </tr>
   );

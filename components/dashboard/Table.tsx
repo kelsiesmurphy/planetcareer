@@ -60,21 +60,23 @@ const Table = ({ userProfile, supabase }: any) => {
           job_period_id={jobApplicationPeriod.id}
           userProfile={userProfile.id}
           getApplications={getApplications}
+          tableLines={tableLines}
+          setTableLines={setTableLines}
         />
       </div>
       <table>
         <thead className="text-left">
           <tr className="flex flex-1 justify-between items-center gap-1 border-y py-3">
-            <th className="flex-1 min-w-[180px] md:max-w-[190px] px-4">
+            <th className="flex-1 min-w-[140px] md:max-w-[190px] px-4">
               <h4 className="text-xs font-medium text-stone-600">Company</h4>
             </th>
             <th className="min-w-[154px] px-4">
               <h4 className="text-xs font-medium text-stone-600">Stage</h4>
             </th>
-            <th className="hidden min-w-[162px] px-4 md:flex">
+            <th className="hidden min-w-[162px] px-4 lg:flex">
               <h4 className="text-xs font-medium text-stone-600">Role</h4>
             </th>
-            <th className="hidden min-w-[100px] px-4 sm:flex">
+            <th className="hidden w-[100px] px-4 sm:flex">
               <h4 className="text-xs font-medium text-stone-600">Pay Range</h4>
             </th>
             <th className="hidden flex-1 max-w-[270px] px-4 xl:flex">
@@ -88,12 +90,12 @@ const Table = ({ userProfile, supabase }: any) => {
                 Date Applied
               </h4>
             </th>
-            <th className="hidden flex-1 px-4 lg:flex">
+            <th className="hidden flex-1 px-4 xl:flex">
               <h4 className="text-xs font-medium text-stone-600">
                 Further Details
               </h4>
             </th>
-            <th className="flex w-16 justify-center items-center px-4 text-stone-500">
+            <th className="flex w-24 justify-center items-center px-4 text-stone-500">
               
             </th>
           </tr>
@@ -109,6 +111,8 @@ const Table = ({ userProfile, supabase }: any) => {
                 index={index}
                 userProfileId={userProfile.id}
                 jobApplicationId={jobApplicationPeriod.id}
+                tableLines={tableLines}
+                setTableLines={setTableLines}
               />
             );
           })}

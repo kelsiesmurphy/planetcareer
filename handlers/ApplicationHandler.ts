@@ -22,6 +22,17 @@ export const updateApplicationStage = async (supabase:any, application:any, stag
     return data;
 }
 
+export const deleteApplication = async (supabase:any, application:any) => {
+    const { data, error } = await supabase
+        .from('application')
+        .delete()
+        .eq('id', application.id)
+    if (error) {
+        throw error;
+    }
+    return data;
+}
+
 export const insertApplication = async (supabase:any, application:any, userProfileId:number, job_period_id:number) => { 
     const { data, error } = await supabase
         .from('application')
@@ -40,6 +51,7 @@ export const insertApplication = async (supabase:any, application:any, userProfi
             stage_id: application.Stage.id,
             user_profile_id: userProfileId
         }])
+        .select()
     if (error) {
         throw error;
     }
@@ -65,6 +77,7 @@ export const updateApplication = async (supabase:any, applicationId:any, applica
             user_profile_id: userProfileId
         }])
         .eq('id', applicationId)
+        .select()
     if (error) {
         throw error;
     }

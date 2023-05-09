@@ -11,11 +11,13 @@ const AddApplication = ({
   job_period_id,
   userProfile,
   getApplications,
+  tableLines,
+  setTableLines,
 }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [secondScreen, setSecondScreen] = useState(false);
 
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState<any>({});
 
   useEffect(() => {
     setValues({
@@ -52,8 +54,13 @@ const AddApplication = ({
 
   const submitApplication = () => {
     try {
-      insertApplication(supabase, values, userProfile, job_period_id).then(() =>
-        getApplications(job_period_id)
+      insertApplication(supabase, values, userProfile, job_period_id).then(
+        (res) => {
+          getApplications(job_period_id);
+          const tableLinesDup = [...tableLines];
+          tableLinesDup.push(res[0])
+          setTableLines(tableLinesDup)
+        }
       );
     } catch (error) {
       alert("Error submitting application");

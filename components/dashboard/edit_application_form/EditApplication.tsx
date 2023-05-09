@@ -10,18 +10,20 @@ const EditApplication = ({
   stages,
   job_period_id,
   userProfileId,
+  tableLines,
+  setTableLines,
   tableLine,
 }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [secondScreen, setSecondScreen] = useState(false);
 
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState<any>({});
 
   useEffect(() => {
     setValues({
       Company: {
         name: tableLine.company_name,
-        logo: tableLine.company_logo
+        logo: tableLine.company_logo,
       },
       Url: tableLine.posting_url,
       PayRange: tableLine.pay_range,
@@ -41,11 +43,43 @@ const EditApplication = ({
   const handleClose = () => {
     setIsOpen(false);
     setSecondScreen(false);
+    setValues({
+      Company: {
+        name: tableLine.company_name,
+        logo: tableLine.company_logo,
+      },
+      Url: tableLine.posting_url,
+      PayRange: tableLine.pay_range,
+      Stage: stages.filter((stage: any) => stage.id === tableLine.stage_id)[0],
+      Role: tableLine.role,
+      Resume: {},
+      CoverLetter: {},
+      FurtherDetails: tableLine.further_details,
+    });
   };
 
   const submitEditedApplication = () => {
     try {
-      updateApplication(supabase, tableLine.id, values, userProfileId, job_period_id);
+      updateApplication(
+        supabase,
+        tableLine.id,
+        values,
+        userProfileId,
+        job_period_id
+      ).then((res) => {
+
+        const tableLinesDup = tableLines.map((a: any) => {
+          let returnValue = { ...a };
+          if (a.id == tableLine.id) {
+            console.log(res[0])
+            returnValue = res[0]
+          }
+          return returnValue;
+        });
+        console.log(tableLinesDup)
+
+        setTableLines(tableLinesDup);
+      });
     } catch (error) {
       alert("Error submitting application");
       console.log(error);
