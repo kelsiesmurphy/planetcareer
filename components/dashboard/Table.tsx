@@ -4,11 +4,13 @@ import AddApplication from "./new_application_form/AddApplication";
 import { createJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
 import { getApplicationsByPeriod } from "@/handlers/ApplicationHandler";
 import { getAllStages } from "@/handlers/StageHandler";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 const Table = ({ userProfile, supabase }: any) => {
   const [jobApplicationPeriod, setJobApplicationPeriod] = useState<any>({});
   const [stages, setStages] = useState<any>([]);
   const [tableLines, setTableLines] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getStages = async () => {
     getAllStages(supabase).then((stages) => {
@@ -19,7 +21,10 @@ const Table = ({ userProfile, supabase }: any) => {
   async function getApplications(jobApplicationPeriod: any) {
     try {
       getApplicationsByPeriod(supabase, jobApplicationPeriod).then(
-        (applications) => setTableLines(applications)
+        (applications) => {
+          setTableLines(applications);
+          setIsLoading(false);
+        }
       );
     } catch (error) {
       console.log(error);
@@ -95,27 +100,38 @@ const Table = ({ userProfile, supabase }: any) => {
                 Further Details
               </h4>
             </th>
-            <th className="flex w-24 justify-center items-center px-4 text-stone-500">
-              
-            </th>
+            <th className="flex w-24 justify-center items-center px-4 text-stone-500"></th>
           </tr>
         </thead>
         <tbody>
-          {tableLines.map((tableLineItem: any, index: number) => {
-            return (
-              <TableLine
-                key={index}
-                stages={stages}
-                tableLineItem={tableLineItem}
-                supabase={supabase}
-                index={index}
-                userProfileId={userProfile.id}
-                jobApplicationId={jobApplicationPeriod.id}
-                tableLines={tableLines}
-                setTableLines={setTableLines}
-              />
-            );
-          })}
+          {isLoading ? (
+            <>
+              <LoadingSkeleton />
+              <LoadingSkeleton />
+              <LoadingSkeleton />
+              <LoadingSkeleton />
+              <LoadingSkeleton />
+              <LoadingSkeleton />
+              <LoadingSkeleton />
+              <LoadingSkeleton />
+            </>
+          ) : (
+            tableLines.map((tableLineItem: any, index: number) => {
+              return (
+                <TableLine
+                  key={index}
+                  stages={stages}
+                  tableLineItem={tableLineItem}
+                  supabase={supabase}
+                  index={index}
+                  userProfileId={userProfile.id}
+                  jobApplicationId={jobApplicationPeriod.id}
+                  tableLines={tableLines}
+                  setTableLines={setTableLines}
+                />
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>
