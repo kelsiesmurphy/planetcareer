@@ -30,6 +30,7 @@ const Faq = ({ font }: any) => {
           );
         })}
       </ul>
+      <p className="max-w-4xl text-stone-600">Currently we're in alpha, so you might find a few bugs as you explore PlanetCareer. If you want to see the issues we're working on, we have a <a className="underline" target="_blank" href="https://planetcareer.notion.site/Known-Issues-6bf1c442fd764cedbf2f509d3a16157e">handy Notion page for known issues.</a></p>
     </section>
   );
 };

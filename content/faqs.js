@@ -15,9 +15,9 @@ export const faqItems = [
   },
   {
     id: 3,
-    title: "Do you follow green practices?",
+    title: "How do you ensure the jobs are ethical?",
     description:
-      "Absolutely, our database and site are hosted on green providers, and you can see our full breakdown of our impact at any time.",
+      "Every job will have been vetted by our team before being shared, our goal is to share companies that are using business as a force for good.",
     link: "/impact",
   },
 ];

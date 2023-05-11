@@ -10,7 +10,7 @@ const sora = Sora({ subsets: ["latin"] });
 const Login = () => {
   type AuthOptions = "Log in" | "Sign up";
 
-  const [authType, setAuthType] = useState<AuthOptions>("Sign up");
+  const [authType, setAuthType] = useState<AuthOptions>("Log in");
 
   return (
     <>
