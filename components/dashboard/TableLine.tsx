@@ -40,19 +40,18 @@ const TableLine = ({
   return (
     <tr className="flex flex-1 justify-between items-center gap-1 border-b py-3 odd:bg-stone-50">
       <td className="flex flex-1 min-w-[140px] md:max-w-[190px] items-center gap-3 px-4 text-sm text-stone-500">
-        {tableLine.company_logo && (
-          <Image
-            width="0"
-            height="0"
-            unoptimized
-            alt={tableLine.company_name + "company logo"}
-            src={tableLine.company_logo}
-            className="rounded-full w-6 md:w-10 aspect-square"
-          />
-        )}
-        <p className="text-slate-900 font-medium">{tableLine.company_name}</p>
+        <EditApplication
+          tableLine={tableLine}
+          supabase={supabase}
+          stages={stages}
+          job_period_id={jobApplicationId}
+          userProfileId={userProfileId}
+          tableLines={tableLines}
+          setTableLines={setTableLines}
+          isText={true}
+        />
       </td>
-      <td className="flex min-w-[142px] sm:min-w-[154px] items-center gap-3 px-4 text-sm text-stone-500">
+      <td className="flex min-w-[154px] items-center gap-3 px-4 text-sm text-stone-500">
         <Dropdown
           currentStage={currentStage}
           stages={stages}
@@ -88,7 +87,7 @@ const TableLine = ({
       <td className="hidden xl:flex flex-1 items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.further_details}
       </td>
-      <td className="flex w-24 justify-center items-center gap-4 px-4 text-stone-500">
+      <td className="hidden md:flex w-24 justify-center items-center gap-4 px-4 text-stone-500">
         <EditApplication
           tableLine={tableLine}
           supabase={supabase}
@@ -97,6 +96,7 @@ const TableLine = ({
           userProfileId={userProfileId}
           tableLines={tableLines}
           setTableLines={setTableLines}
+          isText={false}
         />
         <DeleteApplicationButton tableLine={tableLine} supabase={supabase} />
       </td>

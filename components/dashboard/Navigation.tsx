@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { HelpCircle, X } from "react-feather";
-import demoProfileImg from "../../assets/demo-user-profile.png";
 import menuIcon from "../../assets/menu.svg";
+import layoutIcon from "../../assets/layout.svg";
 import briefcaseIcon from "../../assets/briefcase.svg";
 import homeIcon from "../../assets/home-smile.svg";
 import settingsIcon from "../../assets/settings.svg";
@@ -73,13 +73,13 @@ const Navigation = ({
               onClick={() => goToSection("job-hunt")}
             >
               <Image
-                alt="Home Icon"
+                alt="Application Tracker Icon"
                 width="0"
                 height="0"
                 className="w-6"
-                src={homeIcon}
+                src={layoutIcon}
               />
-              Home
+              Application Tracker
             </li>
             <li
               className={`flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50 ${
@@ -94,7 +94,7 @@ const Navigation = ({
                 className="w-6"
                 src={briefcaseIcon}
               />
-              Application Tracker
+              Job Board
             </li>
             <li
               className={`flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50 ${
@@ -141,11 +141,11 @@ const Navigation = ({
               onClick={() => setPageSection("job-hunt")}
             >
               <Image
-                alt="Home Icon"
+                alt="Application Tracker Icon"
                 width="0"
                 height="0"
                 className="w-6"
-                src={homeIcon}
+                src={layoutIcon}
               />
             </button>
             <button

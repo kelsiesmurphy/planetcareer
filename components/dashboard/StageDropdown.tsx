@@ -7,7 +7,7 @@ export default function Dropdown({ currentStage, stages, handleChangeStage }: an
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
-          className={`rounded-full outline-green-700 text-xs sm:text-sm flex gap-2 items-center py-1 px-3 font-medium ${
+          className={`rounded-full outline-green-700 text-sm flex gap-2 items-center py-1 px-3 font-medium ${
             currentStage.title === "Applied"
               ? "bg-stone-200 text-stone-700"
               : currentStage.title === "Interviewing"

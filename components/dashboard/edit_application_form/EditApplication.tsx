@@ -4,6 +4,8 @@ import { Briefcase, Edit, X } from "react-feather";
 import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";
 import { updateApplication } from "@/handlers/ApplicationHandler";
+import Image from "next/image";
+import DeleteApplicationButton from "../DeleteApplicationButton";
 
 const EditApplication = ({
   supabase,
@@ -13,6 +15,7 @@ const EditApplication = ({
   tableLines,
   setTableLines,
   tableLine,
+  isText,
 }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [secondScreen, setSecondScreen] = useState(false);
@@ -67,16 +70,15 @@ const EditApplication = ({
         userProfileId,
         job_period_id
       ).then((res) => {
-
         const tableLinesDup = tableLines.map((a: any) => {
           let returnValue = { ...a };
           if (a.id == tableLine.id) {
-            console.log(res[0])
-            returnValue = res[0]
+            console.log(res[0]);
+            returnValue = res[0];
           }
           return returnValue;
         });
-        console.log(tableLinesDup)
+        console.log(tableLinesDup);
 
         setTableLines(tableLinesDup);
       });
@@ -90,12 +92,33 @@ const EditApplication = ({
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="hover:text-stone-800 transition-colors"
-      >
-        <Edit size={20} />
-      </button>
+      {isText ? (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="text-slate-900 flex gap-3 items-center font-medium hover:underline"
+        >
+          {tableLine.company_logo && (
+            <Image
+              width="0"
+              height="0"
+              unoptimized
+              alt={tableLine.company_name + "company logo"}
+              src={tableLine.company_logo}
+              className="rounded-full w-8 md:w-10 aspect-square"
+            />
+          )}
+          <p className="text-left text-slate-900 font-medium hover:underline">
+            {tableLine.company_name}
+          </p>
+        </button>
+      ) : (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="hover:text-stone-800 transition-colors"
+        >
+          <Edit size={20} />
+        </button>
+      )}
 
       <Transition show={isOpen} as={Fragment}>
         <Dialog onClose={handleClose} className="relative z-50">
@@ -133,12 +156,15 @@ const EditApplication = ({
                     <div className="p-3.5 border shadow-sm rounded-lg">
                       <Briefcase />
                     </div>
-                    <button
-                      className="p-2.5 focus:outline-green-700"
-                      onClick={handleClose}
-                    >
-                      <X />
-                    </button>
+                    <div className="flex gap-4 items-center">
+                      <DeleteApplicationButton setEditApplicationOpen={setIsOpen} tableLine={tableLine} supabase={supabase} />
+                      <button
+                        className="p-2.5 focus:outline-green-700"
+                        onClick={handleClose}
+                      >
+                        <X />
+                      </button>
+                    </div>
                   </div>
                   <div>
                     <h1 className="font-medium text-lg text-stone-900">

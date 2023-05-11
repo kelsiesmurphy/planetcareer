@@ -3,7 +3,11 @@ import { Fragment, useState } from "react";
 import { Trash2, X } from "react-feather";
 import { deleteApplication } from "@/handlers/ApplicationHandler";
 
-const DeleteApplicationButton = ({ supabase, tableLine }: any) => {
+const DeleteApplicationButton = ({
+  setEditApplicationOpen,
+  supabase,
+  tableLine,
+}: any) => {
   let [isOpen, setIsOpen] = useState(false);
 
   const handleDeleteApplication = () => {
@@ -16,6 +20,7 @@ const DeleteApplicationButton = ({ supabase, tableLine }: any) => {
       console.log(error);
     } finally {
       setIsOpen(false);
+      setEditApplicationOpen(false);
     }
   };
 

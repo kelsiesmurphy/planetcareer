@@ -100,7 +100,7 @@ const Table = ({ userProfile, supabase }: any) => {
                 Further Details
               </h4>
             </th>
-            <th className="flex w-24 justify-center items-center px-4 text-stone-500"></th>
+            <th className="hidden md:flex w-24 justify-center items-center px-4 text-stone-500"></th>
           </tr>
         </thead>
         <tbody>
