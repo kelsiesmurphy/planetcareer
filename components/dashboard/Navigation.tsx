@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { X } from "react-feather";
+import { HelpCircle, X } from "react-feather";
 import demoProfileImg from "../../assets/demo-user-profile.png";
 import menuIcon from "../../assets/menu.svg";
 import briefcaseIcon from "../../assets/briefcase.svg";
@@ -7,6 +7,8 @@ import homeIcon from "../../assets/home-smile.svg";
 import settingsIcon from "../../assets/settings.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import TypeformButton from "../TypeformButton";
+import { issueFormID } from "@/content/typeformIds";
 
 const Navigation = ({
   profile_img,
@@ -29,6 +31,11 @@ const Navigation = ({
       `https://ui-avatars.com/api/?name=${first_name}&background=EAECF0&color=475467&bold=true`
     ).then((data) => setPlaceholder(data.url));
   }, [first_name]);
+
+  const goToSection = (section: "job-hunt" | "job-board" | "settings") => {
+    setPageSection(section);
+    setMobileNavOpen(false);
+  };
 
   return (
     <>
@@ -63,7 +70,7 @@ const Navigation = ({
               className={`flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50 ${
                 pageSection === "job-hunt" && "bg-stone-100"
               }`}
-              onClick={() => setPageSection("job-hunt")}
+              onClick={() => goToSection("job-hunt")}
             >
               <Image
                 alt="Home Icon"
@@ -78,7 +85,7 @@ const Navigation = ({
               className={`flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50 ${
                 pageSection === "job-board" && "bg-stone-100"
               }`}
-              onClick={() => setPageSection("job-board")}
+              onClick={() => goToSection("job-board")}
             >
               <Image
                 alt="Briefcase Icon"
@@ -93,7 +100,7 @@ const Navigation = ({
               className={`flex-1 font-medium text-stone-900 flex gap-3 py-3 px-2 rounded-lg hover:bg-stone-50 ${
                 pageSection === "settings" && "bg-stone-100"
               }`}
-              onClick={() => setPageSection("settings")}
+              onClick={() => goToSection("settings")}
             >
               <Image
                 alt="Settings Icon"
@@ -103,6 +110,13 @@ const Navigation = ({
                 src={settingsIcon}
               />
               Settings
+            </li>
+            <li className="flex py-3 px-2 font-medium">
+              <TypeformButton
+                id={issueFormID}
+                styling="btn-secondary flex-1"
+                text="Found an issue?"
+              />
             </li>
           </ul>
         )}
@@ -151,6 +165,13 @@ const Navigation = ({
           </div>
         </div>
         <div className="flex flex-col gap-2 items-center">
+          <div className="relative pb-6">
+            <TypeformButton
+              id={issueFormID}
+              styling="z-10 absolute top-0  w-9 h-9 hover:text-stone-800"
+            />
+            <HelpCircle size={24} className="z-0" />
+          </div>
           <button
             className={`p-3 hover:text-stone-800 rounded-lg transition-colors ${
               pageSection === "settings" && "bg-stone-100"
@@ -165,6 +186,7 @@ const Navigation = ({
               src={settingsIcon}
             />
           </button>
+
           <Image
             alt="User Image"
             width="0"

@@ -83,32 +83,23 @@ export default function Account({ session }: { session: Session }) {
   };
 
   return (
-    <div className="space-y-6">
-      <Avatar
-        uid={user!.id}
-        url={profile_img}
-        size={150}
-        onUpload={(url) => {
-          setProfileImg(url);
-          updateProfile({ first_name, profile_img: url });
-        }}
-      />
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="font-medium text-sm text-stone-700">
-          Email
-        </label>
-        <input
-          id="email"
-          type="text"
-          value={session.user.email}
-          className="input"
-          disabled
+    <div className="space-y-6 p-4">
+      <div className="flex flex-wrap max-w-4xl gap-2">
+        <p className="flex-1 max-w-xs min-w-[100px] font-medium text-sm text-stone-700">Profile Image</p>
+        <Avatar
+          uid={user!.id}
+          url={profile_img}
+          onUpload={(url) => {
+            setProfileImg(url);
+            updateProfile({ first_name, profile_img: url });
+          }}
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <hr />
+      <div className="flex flex-wrap max-w-4xl gap-2">
         <label
           htmlFor="first_name"
-          className="font-medium text-sm text-stone-700"
+          className="flex-1 max-w-xs min-w-[200px] font-medium text-sm text-stone-700"
         >
           First Name
         </label>
@@ -117,11 +108,24 @@ export default function Account({ session }: { session: Session }) {
           type="text"
           value={first_name || ""}
           onChange={(e) => setFirstName(e.target.value)}
-          className="input"
+          className="input min-w-[200px] flex-1"
+        />
+      </div>
+      <hr />
+      <div className="flex flex-wrap max-w-4xl gap-2">
+        <label htmlFor="email" className="flex-1 min-w-[200px] max-w-xs font-medium text-sm text-stone-700">
+          Email
+        </label>
+        <input
+          id="email"
+          type="text"
+          value={session.user.email}
+          className="input min-w-[200px] flex-1"
+          disabled
         />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex pt-12 flex-wrap justify-end gap-4">
         <button className="btn-secondary w-full" onClick={handleSignOut}>
           Sign Out
         </button>

@@ -5,6 +5,7 @@ import Head from "next/head";
 import Navigation from "@/components/dashboard/Navigation";
 import Table from "@/components/dashboard/Table";
 import Account from "@/components/dashboard/Account";
+import ComingSoon from "@/components/dashboard/job_board/ComingSoon";
 
 const sora = Sora({ subsets: ["latin"] });
 
@@ -60,6 +61,19 @@ export default function Dashboard() {
                 Welcome back, {userProfile.first_name}
               </h1>
               <Table supabase={supabase} userProfile={userProfile} />
+            </div>
+          )}
+          {pageSection === "job-board" && (
+            <div className="flex-1 md:ml-[80px] space-y-12 py-12 md:px-6">
+              <h1
+                className={
+                  sora.className +
+                  " text-2xl px-6 md:px-0 md:text-3xl font-medium text-stone-900"
+                }
+              >
+                Job Board
+              </h1>
+              <ComingSoon />
             </div>
           )}
           {pageSection === "settings" && (

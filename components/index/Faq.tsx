@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { faqItems } from "../../content/faqs";
+import TypeformButton from "../TypeformButton";
+import { contactFormID } from "../../content/typeformIds";
 
 const Faq = ({ font }: any) => {
   return (
@@ -14,7 +16,7 @@ const Faq = ({ font }: any) => {
       <p className="text-stone-600 text-lg md:text-xl max-w-3xl">
         If you have questions, check below. Can&apos;t find the answer
         you&apos;re looking for? Reach out and{" "}
-        <Link href="contact" className="underline">say hello</Link>.
+        <TypeformButton id={contactFormID} styling="underline" text="say hello" />.
       </p>
       <ul className="flex flex-wrap justify-between gap-8 max-w-7xl">
         {faqItems.map((faq, index) => {
