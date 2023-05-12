@@ -80,72 +80,72 @@ const Account = ({ session }: any) => {
     supabase.auth.signOut().then(() => router.push("/"));
   };
 
-  // if (user) {
-  return (
-    <div className="space-y-6 p-4">
-      <div className="flex flex-wrap max-w-4xl gap-2">
-        <p className="flex-1 max-w-xs min-w-[100px] font-medium text-sm text-stone-700">
-          Profile Image
-        </p>
-        <Avatar
-          uid={user!.id}
-          url={profile_img}
-          onUpload={(url) => {
-            setProfileImg(url);
-            updateProfile({ first_name, profile_img: url });
-          }}
-        />
-      </div>
-      <hr />
-      <div className="flex flex-wrap max-w-4xl gap-2">
-        <label
-          htmlFor="first_name"
-          className="flex-1 max-w-xs min-w-[200px] font-medium text-sm text-stone-700"
-        >
-          First Name
-        </label>
-        <input
-          id="first_name"
-          type="text"
-          value={first_name || ""}
-          onChange={(e) => setFirstName(e.target.value)}
-          className="input min-w-[200px] flex-1"
-        />
-      </div>
-      <hr />
-      <div className="flex flex-wrap max-w-4xl gap-2">
-        <label
-          htmlFor="email"
-          className="flex-1 min-w-[200px] max-w-xs font-medium text-sm text-stone-700"
-        >
-          Email
-        </label>
-        <input
-          id="email"
-          type="text"
-          value={session.user.email}
-          className="input min-w-[200px] flex-1"
-          disabled
-        />
-      </div>
+  if (user) {
+    return (
+      <div className="space-y-6 p-4">
+        <div className="flex flex-wrap max-w-4xl gap-2">
+          <p className="flex-1 max-w-xs min-w-[100px] font-medium text-sm text-stone-700">
+            Profile Image
+          </p>
+          <Avatar
+            uid={user!.id}
+            url={profile_img}
+            onUpload={(url) => {
+              setProfileImg(url);
+              updateProfile({ first_name, profile_img: url });
+            }}
+          />
+        </div>
+        <hr />
+        <div className="flex flex-wrap max-w-4xl gap-2">
+          <label
+            htmlFor="first_name"
+            className="flex-1 max-w-xs min-w-[200px] font-medium text-sm text-stone-700"
+          >
+            First Name
+          </label>
+          <input
+            id="first_name"
+            type="text"
+            value={first_name || ""}
+            onChange={(e) => setFirstName(e.target.value)}
+            className="input min-w-[200px] flex-1"
+          />
+        </div>
+        <hr />
+        <div className="flex flex-wrap max-w-4xl gap-2">
+          <label
+            htmlFor="email"
+            className="flex-1 min-w-[200px] max-w-xs font-medium text-sm text-stone-700"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="text"
+            value={session.user.email}
+            className="input min-w-[200px] flex-1"
+            disabled
+          />
+        </div>
 
-      <div className="flex pt-12 flex-wrap justify-end gap-4">
-        <button className="btn-secondary w-full" onClick={handleSignOut}>
-          Sign Out
-        </button>
-        <button
-          className="btn-primary w-full"
-          onClick={() => updateProfile({ first_name, profile_img })}
-          disabled={loading}
-        >
-          {loading ? "Loading ..." : "Update"}
-        </button>
+        <div className="flex pt-12 flex-wrap justify-end gap-4">
+          <button className="btn-secondary w-full" onClick={handleSignOut}>
+            Sign Out
+          </button>
+          <button
+            className="btn-primary w-full"
+            onClick={() => updateProfile({ first_name, profile_img })}
+            disabled={loading}
+          >
+            {loading ? "Loading ..." : "Update"}
+          </button>
+        </div>
       </div>
-    </div>
-  );
-  // } else {
-  //   return <p>Error: User not found.</p>;
-  // }
+    );
+  } else {
+    return <p>Error: User not found.</p>;
+  }
 };
 
 export default Account;
