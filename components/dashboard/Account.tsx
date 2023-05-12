@@ -9,7 +9,7 @@ import Avatar from "./Upload";
 import router from "next/router";
 type UserProfile = Database["public"]["Tables"]["user_profile"]["Row"];
 
-const Account = ({ session }: { session: Session }) => {
+const Account = ({ session }: any) => {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
   const [loading, setLoading] = useState(true);

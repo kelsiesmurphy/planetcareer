@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { Session, useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Sora } from "next/font/google";
 import Head from "next/head";
 import Navigation from "@/components/dashboard/Navigation";
@@ -10,7 +10,7 @@ import ComingSoon from "@/components/dashboard/job_board/ComingSoon";
 const sora = Sora({ subsets: ["latin"] });
 
 export default function Dashboard() {
-  const session = useSession();
+  const session: any = useSession();
   const supabase = useSupabaseClient();
 
   const [userProfile, setUserProfile] = useState<any>({});
@@ -86,7 +86,7 @@ export default function Dashboard() {
               >
                 Settings
               </h1>
-              <Account session={session!} />
+              <Account session={session} />
             </div>
           )}
         </main>
