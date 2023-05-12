@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Session, useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Sora } from "next/font/google";
 import Head from "next/head";
 import Navigation from "@/components/dashboard/Navigation";
@@ -86,7 +86,7 @@ export default function Dashboard() {
               >
                 Settings
               </h1>
-              <Account session={session} />
+              <Account session={session} supabase={supabase} />
             </div>
           )}
         </main>
