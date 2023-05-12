@@ -1,38 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Project - PlanetCareer
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about">About</a>
+      <ul>
+        <li><a href="#design">Design</a></li>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#reflections">Reflections</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT -->
+### PlanetCareer
+
+PlanetCareer is an ethical career platform for a better world. Keep track of your job search with our application tracker, built to help you secure your dream job. Ethical job board coming soon.
+
+<img align="center" src="https://user-images.githubusercontent.com/77012426/211512515-f07b3ef4-5805-4204-9bb6-0fe5b9848138.jpg" alt="Surveyflow landing page home">
+
+<!-- DESIGN -->
+## Design
+This was designed by myself using Figma and UntitledUI.
+
+<!-- BUILT WITH -->
+## Built With
+
+* NextJS
+* Typescript
+* TailwindCSS
+* Supabase
+
+<!-- REFLECTIONS -->
+## Reflections
+I built this app to fix a problem for myself whilst looking for junior developer roles, and wanting to work for companies that are ethical and purpose-driven. I was also tracking my job applications using Notion, and decided I could build a custom solution, and other people might want to use it too.
+
+<!-- GETTING STARTED -->
 ## Getting Started
+### Prerequisites
 
-First, run the development server:
+To run this app, you must run: 
+* pnpm install
+  ```sh
+  pnpm install
+  ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+* run in development (http://localhost:3000)
+  ```sh
+  pnpm run dev
+  ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Note: To stop the server enter ctrl + c in your Terminal
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<!-- CONTACT -->
+## Contact
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Kelsie Murphy - [LinkedIn](https://www.linkedin.com/in/kelsiesmurphy/) - [Twitter](https://twitter.com/kelsiesmurphy)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Project Link: [https://github.com/kelsiesmurphy/planetcareer](https://github.com/kelsiesmurphy/planetcareer)

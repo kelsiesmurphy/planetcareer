@@ -9,7 +9,7 @@ import Avatar from "./Upload";
 import router from "next/router";
 type UserProfile = Database["public"]["Tables"]["user_profile"]["Row"];
 
-export default function Account({ session }: { session: Session }) {
+const Account = ({ session }: { session: Session }) => {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
   const [loading, setLoading] = useState(true);
@@ -80,7 +80,7 @@ export default function Account({ session }: { session: Session }) {
     supabase.auth.signOut().then(() => router.push("/"));
   };
 
-  if (user)
+  if (user) {
     return (
       <div className="space-y-6 p-4">
         <div className="flex flex-wrap max-w-4xl gap-2">
@@ -143,4 +143,9 @@ export default function Account({ session }: { session: Session }) {
         </div>
       </div>
     );
-}
+  } else {
+    return <p>Error: User not found.</p>;
+  }
+};
+
+export default Account;
