@@ -43,20 +43,39 @@ const FirstScreen = ({
           handleChange={handleChange}
         />
       </div>
-      <div className="flex-1 flex flex-col gap-1.5">
-        <label htmlFor="Role" className="font-medium text-sm text-stone-700">
-          Role
-        </label>
-        <input
-          onChange={handleChange}
-          id="Role"
-          type="text"
-          name="Role"
-          value={values.Role}
-          placeholder="e.g. Developer"
-          className="input"
-        />
+      <div className="flex flex-wrap gap-4">
+        <div className="flex-1 flex flex-col gap-1.5">
+          <label htmlFor="Role" className="font-medium text-sm text-stone-700">
+            Role
+          </label>
+          <input
+            onChange={handleChange}
+            id="Role"
+            type="text"
+            name="Role"
+            value={values.Role}
+            placeholder="e.g. Developer"
+            className="input"
+          />
+        </div>
+        <div className="flex-1 flex flex-col gap-1.5">
+          <label
+            htmlFor="AppliedDate"
+            className="font-medium text-sm text-stone-700"
+          >
+            Applied Date
+          </label>
+          <input
+            onChange={handleChange}
+            id="AppliedDate"
+            type="date"
+            name="AppliedDate"
+            value={values.AppliedDate}
+            className="input"
+          />
+        </div>
       </div>
+
       <button
         onClick={() => setSecondScreen(true)}
         className="bg-green-700 hover:bg-green-800 py-2.5 mt-3 px-4 rounded-lg text-white transition-colors items-center flex-1 hadow-sm justify-center flex gap-2"

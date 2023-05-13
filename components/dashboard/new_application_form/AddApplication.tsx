@@ -28,6 +28,7 @@ const AddApplication = ({
       Role: "",
       Resume: {},
       CoverLetter: {},
+      AppliedDate: new Date().toLocaleDateString('en-CA'),
       FurtherDetails: "",
     });
   }, [stages]);
@@ -48,6 +49,7 @@ const AddApplication = ({
       Role: "",
       Resume: {},
       CoverLetter: {},
+      AppliedDate: new Date().toLocaleDateString('en-CA'),
       FurtherDetails: "",
     });
   };

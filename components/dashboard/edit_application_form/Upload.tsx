@@ -18,7 +18,7 @@ export default function FileUpload({
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    if (url) downloadFile(url);
+    if (url) downloadFile(url.url);
   }, [url]);
 
   async function downloadFile(path: string) {
@@ -84,10 +84,12 @@ export default function FileUpload({
               <File className="text-green-700" size={16} />
             </div>
             <div className="flex-1 flex gap-4 items-start justify-between">
-              <p className="text-stone-900 font-medium text-sm">{url}</p>
-              <p className="text-stone-500 font-light text-sm">
-                {Math.round(url.size / 1024)} KB
-              </p>
+              <div>
+                <p className="text-stone-900 font-medium text-sm">{url.url}</p>
+                <p className="text-stone-500 font-light text-sm">
+                  {Math.round(url.size / 1024)} KB
+                </p>
+              </div>
               <button onClick={() => setFileUrl(null)}>
                 <Trash2
                   size={20}

@@ -23,6 +23,7 @@ const EditApplication = ({
   const [values, setValues] = useState<any>({});
 
   useEffect(() => {
+    console.log(tableLine)
     setValues({
       Company: {
         name: tableLine.company_name,
@@ -32,8 +33,15 @@ const EditApplication = ({
       PayRange: tableLine.pay_range,
       Stage: stages.filter((stage: any) => stage.id === tableLine.stage_id)[0],
       Role: tableLine.role,
-      Resume: tableLine.resume,
-      CoverLetter: tableLine.cover_letter,
+      Resume: {
+        url: tableLine.resume.url,
+        size: tableLine.resume.size
+      },
+      CoverLetter: {
+        url: tableLine.cover_letter.url,
+        size: tableLine.cover_letter.size
+      },
+      AppliedDate: tableLine.applied_date,
       FurtherDetails: tableLine.further_details,
     });
   }, [stages]);
@@ -56,13 +64,14 @@ const EditApplication = ({
       Stage: stages.filter((stage: any) => stage.id === tableLine.stage_id)[0],
       Role: tableLine.role,
       Resume: {
-        url: tableLine.resume,
-        size: null
+        url: tableLine.resume.url,
+        size: tableLine.resume.size
       },
       CoverLetter: {
-        url: tableLine.cover_letter,
-        size: null
+        url: tableLine.cover_letter.url,
+        size: tableLine.cover_letter.size
       },
+      AppliedDate: tableLine.applied_date,
       FurtherDetails: tableLine.further_details,
     });
   };
