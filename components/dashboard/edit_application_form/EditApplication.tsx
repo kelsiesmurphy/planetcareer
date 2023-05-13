@@ -32,8 +32,8 @@ const EditApplication = ({
       PayRange: tableLine.pay_range,
       Stage: stages.filter((stage: any) => stage.id === tableLine.stage_id)[0],
       Role: tableLine.role,
-      Resume: {},
-      CoverLetter: {},
+      Resume: tableLine.resume,
+      CoverLetter: tableLine.cover_letter,
       FurtherDetails: tableLine.further_details,
     });
   }, [stages]);
@@ -55,8 +55,14 @@ const EditApplication = ({
       PayRange: tableLine.pay_range,
       Stage: stages.filter((stage: any) => stage.id === tableLine.stage_id)[0],
       Role: tableLine.role,
-      Resume: {},
-      CoverLetter: {},
+      Resume: {
+        url: tableLine.resume,
+        size: null
+      },
+      CoverLetter: {
+        url: tableLine.cover_letter,
+        size: null
+      },
       FurtherDetails: tableLine.further_details,
     });
   };

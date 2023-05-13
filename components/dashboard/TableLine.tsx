@@ -77,7 +77,9 @@ const TableLine = ({
         )}
       </td>
       <td className="hidden sm:flex flex-1 max-w-[60px] items-center gap-3 px-4 text-sm text-stone-500">
-        <Globe className="text-stone-400 hover:text-stone-700 transition-colors cursor-pointer" />
+        <a href={tableLine.posting_url} target="_blank">
+          <Globe className="text-stone-400 hover:text-stone-700 transition-colors" />
+        </a>
       </td>
       <td className="hidden lg:flex flex-1 max-w-[112px] items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.applied_date

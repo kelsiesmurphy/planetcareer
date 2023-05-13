@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const UrlInput = ({ label, placeholder, handleChange, values }: any) => {
   const [postingUrl, setPostingUrl] = useState(values.Url);
-  
+
   const changeInput = (url: any) => {
     const result = {
       target: {
@@ -10,16 +10,12 @@ const UrlInput = ({ label, placeholder, handleChange, values }: any) => {
         value: url,
       },
     };
-    setPostingUrl(url)
+    setPostingUrl(url);
     handleChange(result);
   };
 
-  function removeHttp(url:string) {
-    return url.replace(/^https?:\/\//, '');
-  }
-
-  function pasteUrl(e: { target: { value: string; }; }) {
-    changeInput(removeHttp(e.target.value))
+  function pasteUrl(e: { target: { value: string } }) {
+    changeInput(e.target.value);
   }
 
   return (
@@ -34,7 +30,7 @@ const UrlInput = ({ label, placeholder, handleChange, values }: any) => {
         <input
           id={label}
           type="text"
-          value={postingUrl}
+          value={postingUrl.replace(/^https?:\/\//, "")}
           onChange={pasteUrl}
           placeholder={placeholder}
           className="flex-1 py-2.5 px-3.5 rounded-l-none rounded-r-lg border-none outline-green-700"

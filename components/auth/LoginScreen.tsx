@@ -51,7 +51,7 @@ const LoginScreen = ({ setAuthType, font }: any) => {
             id="email"
             type="email"
             placeholder="Enter your email"
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             value={email}
             className="input"
             name="email"
@@ -69,7 +69,7 @@ const LoginScreen = ({ setAuthType, font }: any) => {
             type="password"
             placeholder="Enter your password"
             className="input"
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             value={password}
             name="password"
           />
