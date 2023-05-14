@@ -41,15 +41,13 @@ const Navigation = ({
     <>
       <div className="flex flex-col gap-4 md:hidden px-4 py-3 bg-white border-b text-stone-500 border-stone-200">
         <div className="flex flex-1 gap-4 justify-between items-center">
-          <div>
-            <Image
-              alt="PlanetCareer Logo without text"
-              width="0"
-              height="0"
-              className="w-10 aspect-square"
-              src="/logomark.svg"
-            />
-          </div>
+          <Image
+            alt="PlanetCareer Logo without text"
+            width="0"
+            height="0"
+            className="w-10 aspect-square"
+            src="/logomark.svg"
+          />
           <div className="p-2" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
             {mobileNavOpen ? (
               <X />
