@@ -58,10 +58,10 @@ const TableLine = ({
           handleChangeStage={handleChangeStage}
         />
       </td>
-      <td className="hidden lg:flex min-w-[162px] items-center gap-3 px-4 text-sm text-stone-500">
+      <td className="hidden lg:flex w-[162px] break-all items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.role ? tableLine.role : "N/A"}
       </td>
-      <td className="hidden sm:flex w-[100px] items-center gap-3 px-4 text-sm text-stone-500">
+      <td className="hidden sm:flex w-[100px] break-all items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.pay_range ? tableLine.pay_range : "Not given"}
       </td>
       <td className="hidden xl:flex flex-1 max-w-[270px] flex-wrap items-center gap-3 px-4 text-sm text-stone-500">
@@ -86,7 +86,7 @@ const TableLine = ({
           ? new Date(tableLine.applied_date).toLocaleDateString("en-GB")
           : "N/A"}
       </td>
-      <td className="hidden xl:flex flex-1 items-center gap-3 px-4 text-sm text-stone-500">
+      <td className="hidden xl:flex flex-1 break-all max-w-xs items-center gap-3 px-4 text-sm text-stone-500">
         {tableLine.further_details}
       </td>
       <td className="hidden md:flex w-24 justify-center items-center gap-4 px-4 text-stone-500">

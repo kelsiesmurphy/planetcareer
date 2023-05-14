@@ -78,7 +78,7 @@ const Table = ({ userProfile, supabase }: any) => {
             <th className="min-w-[154px] px-4">
               <h4 className="text-xs font-medium text-stone-600">Stage</h4>
             </th>
-            <th className="hidden min-w-[162px] px-4 lg:flex">
+            <th className="hidden w-[162px] px-4 lg:flex">
               <h4 className="text-xs font-medium text-stone-600">Role</h4>
             </th>
             <th className="hidden w-[100px] px-4 sm:flex">
@@ -95,7 +95,7 @@ const Table = ({ userProfile, supabase }: any) => {
                 Date Applied
               </h4>
             </th>
-            <th className="hidden flex-1 px-4 xl:flex">
+            <th className="hidden flex-1 px-4 xl:flex max-w-xs">
               <h4 className="text-xs font-medium text-stone-600">
                 Further Details
               </h4>
