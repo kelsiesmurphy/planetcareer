@@ -121,15 +121,13 @@ const Navigation = ({
 
       <div className="hidden md:flex fixed min-h-screen px-4 py-10 bg-white border-r text-stone-500 border-stone-200 w-[80px] flex-col gap-4 justify-between">
         <div className="flex flex-col gap-6 items-center">
-          <Link href="/">
-            <Image
-              alt="PlanetCareer Logo without text"
-              width="0"
-              height="0"
-              className="w-10 aspect-square"
-              src="/logomark.svg"
-            />
-          </Link>
+          <Image
+            alt="PlanetCareer Logo without text"
+            width="0"
+            height="0"
+            className="w-10 aspect-square"
+            src="/logomark.svg"
+          />
           <div className="space-y-1">
             <button
               className={`p-3 hover:text-stone-800 rounded-lg transition-colors ${
