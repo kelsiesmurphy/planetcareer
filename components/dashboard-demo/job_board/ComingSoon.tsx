@@ -3,6 +3,7 @@ import ComingSoonImg from "../../../assets/Illustration.svg";
 import Image from "next/image";
 import { contactFormID } from "../../../content/typeformIds";
 
+
 const ComingSoon = () => {
   return (
     <div className="flex justify-center items-center">
