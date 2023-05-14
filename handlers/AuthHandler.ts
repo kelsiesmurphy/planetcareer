@@ -1,5 +1,5 @@
 export const createSignUp = async (supabase:any, firstName:string, email:string, password:any) => {
-    const { data, error } = await supabase.auth.signUp({
+    const result = await supabase.auth.signUp({
         email: email,
         password: password,
         options: {
@@ -8,17 +8,15 @@ export const createSignUp = async (supabase:any, firstName:string, email:string,
             },
           },
     });
-    if (error) throw error;
-    return data;
+    return result;
 };
 
 export const loginUser = async(supabase:any, email:string, password:string) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const result = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
     });
-    if (error) throw error;
-    return data;
+    return result;
 }
 
 export const signOut = async (supabase:any, router:any) => {

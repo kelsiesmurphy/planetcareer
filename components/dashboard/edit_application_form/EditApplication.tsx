@@ -23,7 +23,6 @@ const EditApplication = ({
   const [values, setValues] = useState<any>({});
 
   useEffect(() => {
-    console.log(tableLine)
     setValues({
       Company: {
         name: tableLine.company_name,
@@ -35,11 +34,11 @@ const EditApplication = ({
       Role: tableLine.role,
       Resume: {
         url: tableLine.resume.url,
-        size: tableLine.resume.size
+        size: tableLine.resume.size,
       },
       CoverLetter: {
         url: tableLine.cover_letter.url,
-        size: tableLine.cover_letter.size
+        size: tableLine.cover_letter.size,
       },
       AppliedDate: tableLine.applied_date,
       FurtherDetails: tableLine.further_details,
@@ -65,11 +64,11 @@ const EditApplication = ({
       Role: tableLine.role,
       Resume: {
         url: tableLine.resume.url,
-        size: tableLine.resume.size
+        size: tableLine.resume.size,
       },
       CoverLetter: {
         url: tableLine.cover_letter.url,
-        size: tableLine.cover_letter.size
+        size: tableLine.cover_letter.size,
       },
       AppliedDate: tableLine.applied_date,
       FurtherDetails: tableLine.further_details,
@@ -88,13 +87,10 @@ const EditApplication = ({
         const tableLinesDup = tableLines.map((a: any) => {
           let returnValue = { ...a };
           if (a.id == tableLine.id) {
-            console.log(res[0]);
             returnValue = res[0];
           }
           return returnValue;
         });
-        console.log(tableLinesDup);
-
         setTableLines(tableLinesDup);
       });
     } catch (error) {
@@ -172,7 +168,11 @@ const EditApplication = ({
                       <Briefcase />
                     </div>
                     <div className="flex gap-4 items-center">
-                      <DeleteApplicationButton setEditApplicationOpen={setIsOpen} tableLine={tableLine} supabase={supabase} />
+                      <DeleteApplicationButton
+                        setEditApplicationOpen={setIsOpen}
+                        tableLine={tableLine}
+                        supabase={supabase}
+                      />
                       <button
                         className="p-2.5 focus:outline-green-700"
                         onClick={handleClose}
