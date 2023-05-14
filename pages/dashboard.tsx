@@ -6,6 +6,8 @@ import Navigation from "@/components/dashboard/Navigation";
 import Table from "@/components/dashboard/Table";
 import Account from "@/components/dashboard/Account";
 import ComingSoon from "@/components/dashboard/job_board/ComingSoon";
+import Router from "next/router";
+import { signOut } from "@/handlers/AuthHandler";
 
 const sora = Sora({ subsets: ["latin"] });
 
@@ -93,6 +95,6 @@ export default function Dashboard() {
       </>
     );
   } else {
-    return <h1>Error: Cannot access this page unless you are logged in.</h1>;
+    return <h1>Error: Cannot access this page unless you are logged in. If you are encountering issues, please ensure you are <button className="text-green-800" onClick={() => signOut(supabase, Router)}>signed out</button> correctly</h1>;
   }
 }

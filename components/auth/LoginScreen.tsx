@@ -3,12 +3,14 @@ import router from "next/router";
 import Image from "next/image";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { loginUser } from "@/handlers/AuthHandler";
+import ForgotPasswordModal from "./ForgotPasswordModal";
 
 const LoginScreen = ({ setAuthType, font }: any) => {
   const supabase = useSupabaseClient();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [forgotPasswordOpen, setForgotPasswordOpen] = useState(false);
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
@@ -75,7 +77,11 @@ const LoginScreen = ({ setAuthType, font }: any) => {
           />
         </div>
       </div>
-      <button onClick={handleLogin} className="btn-primary w-full max-w-none">
+      <button
+        onClick={handleLogin}
+        className="btn-primary w-full max-w-none"
+        disabled={email === "" || !email.includes("@") || password === ""}
+      >
         Log in
       </button>
       <div>
@@ -89,6 +95,18 @@ const LoginScreen = ({ setAuthType, font }: any) => {
           </button>
         </p>
       </div>
+      <ForgotPasswordModal
+        supabase={supabase}
+        isOpen={forgotPasswordOpen}
+        setIsOpen={setForgotPasswordOpen}
+      >
+        <button
+          onClick={() => setForgotPasswordOpen(true)}
+          className="font-medium text-green-700 hover:text-green-700 py-2 text-sm w-full outline-green-700"
+        >
+          Forgot password
+        </button>
+      </ForgotPasswordModal>
     </div>
   );
 };

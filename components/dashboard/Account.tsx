@@ -7,6 +7,7 @@ import {
 import { Database } from "../../utils/database.types";
 import Avatar from "./Upload";
 import router from "next/router";
+import { signOut } from "@/handlers/AuthHandler";
 type UserProfile = Database["public"]["Tables"]["user_profile"]["Row"];
 
 const Account = ({ session, supabase }: any) => {
@@ -76,10 +77,6 @@ const Account = ({ session, supabase }: any) => {
     }
   }
 
-  const handleSignOut = () => {
-    supabase.auth.signOut().then(() => router.push("/"));
-  };
-
   if (user) {
     return (
       <div className="space-y-6 p-4">
@@ -130,7 +127,7 @@ const Account = ({ session, supabase }: any) => {
         </div>
 
         <div className="flex pt-12 flex-wrap justify-end gap-4">
-          <button className="btn-secondary w-full" onClick={handleSignOut}>
+          <button className="btn-secondary w-full" onClick={() => signOut(supabase, router)}>
             Sign Out
           </button>
           <button

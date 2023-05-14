@@ -94,7 +94,7 @@ const SignupScreen = ({ setAuthType, font }: any) => {
           </p>
         </div>
       </div>
-      <button onClick={handleSignup} className="btn-primary w-full max-w-none">
+      <button onClick={handleSignup} className="btn-primary w-full max-w-none" disabled={email === "" || !email.includes("@") || password === "" || firstName === ""}>
         Get started
       </button>
       <div>

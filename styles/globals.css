@@ -4,7 +4,7 @@
 
 @layer components {
     .btn-primary {
-      @apply bg-green-700 hover:bg-green-800 py-2.5 px-4 rounded-lg text-white transition-colors items-center flex-initial shadow-sm md:max-w-[200px] justify-center flex gap-2;
+      @apply bg-green-700 hover:bg-green-800 py-2.5 px-4 rounded-lg text-white transition-colors items-center flex-initial shadow-sm md:max-w-[200px] justify-center flex gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-green-700;
     }
     .btn-secondary {
       @apply bg-white hover:bg-stone-100 border border-stone-300 shadow-sm text-stone-700 py-2 px-3.5 rounded-lg transition-colors items-center flex-initial md:max-w-[200px] justify-center flex gap-2;
