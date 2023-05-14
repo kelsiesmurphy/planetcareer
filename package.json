@@ -13,7 +13,6 @@
     "@supabase/auth-helpers-nextjs": "^0.6.1",
     "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/supabase-js": "^2.21.0",
-    "@tailwindcss/line-clamp": "^0.4.4",
     "@typeform/embed-react": "^2.20.0",
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",
