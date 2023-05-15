@@ -15,7 +15,7 @@ const UrlInput = ({ label, placeholder, handleChange, values }: any) => {
   };
 
   function pasteUrl(e: { target: { value: string } }) {
-    changeInput(e.target.value);
+    changeInput(e.target.value.replace(/^https?:\/\//, ""));
   }
 
   return (
@@ -30,7 +30,7 @@ const UrlInput = ({ label, placeholder, handleChange, values }: any) => {
         <input
           id={label}
           type="text"
-          value={postingUrl.replace(/^https?:\/\//, "")}
+          value={postingUrl}
           onChange={pasteUrl}
           placeholder={placeholder}
           className="flex-1 py-2.5 px-3.5 rounded-l-none rounded-r-lg border-none outline-green-700"

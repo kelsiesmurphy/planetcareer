@@ -56,6 +56,10 @@ const TableLine = ({
     );
   };
 
+  const setEditApplicationOpen = (bool:boolean) => {
+    return bool
+  }
+
   return (
     <tr className="flex flex-1 justify-between items-center gap-1 border-b py-3 odd:bg-stone-50">
       <td className="flex flex-1 min-w-[140px] md:max-w-[190px] items-center gap-3 px-4 text-sm text-stone-500">
@@ -97,7 +101,7 @@ const TableLine = ({
         )}
       </td>
       <td className="hidden sm:flex flex-1 max-w-[60px] items-center gap-3 px-4 text-sm text-stone-500">
-        <a href={tableLine.posting_url} target="_blank">
+        <a href={`//${tableLine.posting_url}`} target="_blank">
           <Globe className="text-stone-400 hover:text-stone-700 transition-colors" />
         </a>
       </td>
@@ -120,7 +124,7 @@ const TableLine = ({
           setTableLines={setTableLines}
           isText={false}
         />
-        <DeleteApplicationButton tableLine={tableLine} supabase={supabase} />
+        <DeleteApplicationButton setEditApplicationOpen={() => setEditApplicationOpen(false)} tableLine={tableLine} supabase={supabase} />
       </td>
     </tr>
   );
