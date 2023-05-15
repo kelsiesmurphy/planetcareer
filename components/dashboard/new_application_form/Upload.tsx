@@ -4,12 +4,10 @@ import { Database } from "../../../utils/database.types";
 import { File, Trash2, UploadCloud } from "react-feather";
 
 export default function FileUpload({
-  uid,
   url,
   onUpload,
   fileName,
 }: {
-  uid: string;
   url: any;
   onUpload: (url: string, size: number) => void;
   fileName: string;

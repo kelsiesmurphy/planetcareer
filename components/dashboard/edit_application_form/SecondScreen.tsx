@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "react-feather";
 import FileUpload from "./Upload";
-import { useUser } from "@supabase/auth-helpers-react";
 
 const SecondScreen = ({
   setSecondScreen,
@@ -8,8 +7,6 @@ const SecondScreen = ({
   handleChange,
   values,
 }: any) => {
-  const user = useUser();
-
   const handleChangeResume = (url: any, size: any) => {
     const result = {
       target: {
@@ -40,7 +37,6 @@ const SecondScreen = ({
     <div className="flex flex-col gap-4">
       <FileUpload
         fileName="Resume"
-        uid={user!.id}
         url={values.Resume}
         onUpload={(url, size) => {
           handleChangeResume(url, size);
@@ -48,7 +44,6 @@ const SecondScreen = ({
       />
       <FileUpload
         fileName="Cover Letter"
-        uid={user!.id}
         url={values.CoverLetter}
         onUpload={(url, size) => {
           handleChangeCoverLetter(url, size);

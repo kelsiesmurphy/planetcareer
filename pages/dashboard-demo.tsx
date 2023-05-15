@@ -12,8 +12,9 @@ const sora = Sora({ subsets: ["latin"] });
 export default function Dashboard() {
   const supabase = useSupabaseClient();
 
-  const firstName = "Jessica"
-  const profileImage = "https://xddplurlgjvqtjiyodqt.supabase.co/storage/v1/object/public/demo-applications-storage/demo-user-profile.png"
+  const firstName = "Jessica";
+  const profileImage =
+    "https://xddplurlgjvqtjiyodqt.supabase.co/storage/v1/object/public/demo-applications-storage/demo-user-profile.png";
 
   const [pageSection, setPageSection] = useState<
     "job-hunt" | "job-board" | "settings"
@@ -22,7 +23,7 @@ export default function Dashboard() {
   return (
     <>
       <Head>
-        <title>{firstName}&apos;s Dashboard | PlanetCareer</title>
+        <title>Example Dashboard | PlanetCareer</title>
         <meta
           name="description"
           content="Keep track of your job search with our application tracker, built to help you secure your dream job. Ethical job board coming soon."

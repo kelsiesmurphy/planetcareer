@@ -30,7 +30,7 @@
 
 PlanetCareer is an ethical career platform for a better world. Keep track of your job search with our application tracker, built to help you secure your dream job. Ethical job board coming soon.
 
-<img align="center" src="https://user-images.githubusercontent.com/77012426/211512515-f07b3ef4-5805-4204-9bb6-0fe5b9848138.jpg" alt="Surveyflow landing page home">
+<img align="center" src="https://user-images.githubusercontent.com/77012426/238215213-eff5aae0-cb6d-45cb-8eac-d7915d579f05.jpg" alt="PlanetCareer landing page home">
 
 <!-- DESIGN -->
 ## Design

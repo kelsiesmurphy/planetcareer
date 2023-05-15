@@ -1,6 +1,6 @@
 import Logo from "../Logo";
 
-const Navigation = ({ children }:any) => {
+const Navigation = ({ children }: any) => {
   return (
     <nav
       id="top"
@@ -14,7 +14,7 @@ const Navigation = ({ children }:any) => {
           FAQ
         </a>
       </div>
-      { children }
+      {children}
     </nav>
   );
 };

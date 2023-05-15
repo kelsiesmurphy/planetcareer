@@ -1,13 +1,12 @@
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import { HelpCircle, X } from "react-feather";
+import { issueFormID } from "@/content/typeformIds";
+import Image from "next/image";
 import menuIcon from "../../assets/menu.svg";
 import layoutIcon from "../../assets/layout.svg";
 import briefcaseIcon from "../../assets/briefcase.svg";
 import settingsIcon from "../../assets/settings.svg";
-import { useEffect, useState } from "react";
-import Link from "next/link";
 import TypeformButton from "../TypeformButton";
-import { issueFormID } from "@/content/typeformIds";
 
 const Navigation = ({
   profile_img,

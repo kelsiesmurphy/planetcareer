@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { Globe, Paperclip } from "react-feather";
-import Dropdown from "./StageDropdown";
 import { updateApplicationStage } from "@/handlers/ApplicationHandler";
+import Dropdown from "./StageDropdown";
 import EditApplication from "./edit_application_form/EditApplication";
 import DeleteApplicationButton from "./DeleteApplicationButton";
 

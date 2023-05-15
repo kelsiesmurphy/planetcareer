@@ -2,7 +2,12 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { forgotPassword } from "@/handlers/AuthHandler";
 
-const ForgotPasswordModal = ({ supabase, children, isOpen, setIsOpen }: any) => {
+const ForgotPasswordModal = ({
+  supabase,
+  children,
+  isOpen,
+  setIsOpen,
+}: any) => {
   const [email, setEmail] = useState("");
 
   const handleForgotPassword = () => {

@@ -22,7 +22,9 @@ const Hero = ({ font, children }: any) => {
         </p>
       </div>
       <div className="flex gap-4">
-        <Link href="/dashboard-demo" className="btn-secondary"><ArrowUpRight /> View Demo</Link>
+        <Link href="/dashboard-demo" className="btn-secondary">
+          <ArrowUpRight /> View Demo
+        </Link>
         {children}
       </div>
       <IframeDemo />

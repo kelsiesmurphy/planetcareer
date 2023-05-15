@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Image from "next/image";
-import router from "next/router";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { createSignUp } from "@/handlers/AuthHandler";
+import Image from "next/image";
+import router from "next/router";
 import Alert from "../Alert";
 
 const SignupScreen = ({ setAuthType, font }: any) => {
@@ -18,19 +18,13 @@ const SignupScreen = ({ setAuthType, font }: any) => {
     e.preventDefault();
     try {
       createSignUp(supabase, firstName, email, password).then((res) => {
-        console.log(res);
         if (res.data.user !== null) {
           res.data.user.id && router.push("/dashboard");
         }
         if (res.error.message) {
-          console.log(res);
           setAlertMessage(res.error.message);
           setAlertOpen(true);
         }
-        // if (res.error.message === "Password should be at least 6 characters") {
-        //   console.log(res);
-        //   setAlertOpen(true);
-        // }
       });
     } catch (error: any) {
       console.log(error.error_description || error.message);

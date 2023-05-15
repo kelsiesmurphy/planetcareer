@@ -6,12 +6,7 @@ import SecondScreen from "./SecondScreen";
 import Image from "next/image";
 import DeleteApplicationButton from "../DeleteApplicationButton";
 
-const EditApplication = ({
-  supabase,
-  stages,
-  tableLine,
-  isText,
-}: any) => {
+const EditApplication = ({ supabase, stages, tableLine, isText }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [secondScreen, setSecondScreen] = useState(false);
 
@@ -164,7 +159,8 @@ const EditApplication = ({
                     setSecondScreen={setSecondScreen}
                     handleChange={handleChange}
                     values={values}
-                    setIsOpen={setIsOpen}                  />
+                    setIsOpen={setIsOpen}
+                  />
                 ) : (
                   <FirstScreen
                     setSecondScreen={setSecondScreen}

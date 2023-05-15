@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { Database } from "../../../utils/database.types";
+import React, { useState } from "react";
 import { File, Trash2, UploadCloud } from "react-feather";
 
 export default function FileUpload({
   url,
-  onUpload,
   fileName,
 }: {
   url: any;
-  onUpload: (url: string, size: number) => void;
   fileName: string;
 }) {
   const [fileUrl, setFileUrl] = useState<any>(null);
   const [uploading, setUploading] = useState(false);
-
 
   return (
     <div className="flex-1 flex flex-col gap-1.5">

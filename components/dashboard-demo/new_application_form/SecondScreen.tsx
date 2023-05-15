@@ -1,50 +1,16 @@
 import { ArrowUpRight } from "react-feather";
 import FileUpload from "./Upload";
-import { useUser } from "@supabase/auth-helpers-react";
 
-const SecondScreen = ({ setSecondScreen, handleChange, values, setIsOpen }: any) => {
-  const handleChangeResume = (url: any, size: any) => {
-    const result = {
-      target: {
-        name: "Resume",
-        value: {
-          url: url,
-          size: size,
-        },
-      },
-    };
-    handleChange(result);
-  };
-
-  const handleChangeCoverLetter = (url: any, size: any) => {
-    const result = {
-      target: {
-        name: "CoverLetter",
-        value: {
-          url: url,
-          size: size,
-        },
-      },
-    };
-    handleChange(result);
-  };
-
+const SecondScreen = ({
+  setSecondScreen,
+  handleChange,
+  values,
+  setIsOpen,
+}: any) => {
   return (
     <div className="flex flex-col gap-4">
-      <FileUpload
-        fileName="Resume"
-        url={values.Resume}
-        onUpload={(url, size) => {
-          handleChangeResume(url, size);
-        }}
-      />
-      <FileUpload
-        fileName="Cover Letter"
-        url={values.CoverLetter}
-        onUpload={(url, size) => {
-          handleChangeCoverLetter(url, size);
-        }}
-      />
+      <FileUpload fileName="Resume" url={values.Resume} />
+      <FileUpload fileName="Cover Letter" url={values.CoverLetter} />
       <div className="flex-1 flex flex-col gap-1.5">
         <label
           htmlFor="further-details"

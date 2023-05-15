@@ -1,4 +1,4 @@
- import { ArrowLeft, ArrowRight } from "react-feather";
+import { ArrowLeft, ArrowRight } from "react-feather";
 
 const Pagination = ({
   demoTableItems,
@@ -28,7 +28,9 @@ const Pagination = ({
         ))}
       </ul>
       <button
-        className={currentPage === demoTableItems.length ? "hidden" : "btn-secondary"}
+        className={
+          currentPage === demoTableItems.length ? "hidden" : "btn-secondary"
+        }
         onClick={() => onPageChange(currentPage - 1)}
       >
         Next

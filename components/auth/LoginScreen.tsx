@@ -1,8 +1,8 @@
 import { useState } from "react";
-import router from "next/router";
-import Image from "next/image";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { loginUser } from "@/handlers/AuthHandler";
+import router from "next/router";
+import Image from "next/image";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 import Alert from "../Alert";
 

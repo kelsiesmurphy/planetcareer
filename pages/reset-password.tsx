@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Head from "next/head";
-import Navigation from "@/components/auth/Navigation";
+import router from "next/router";
 import Image from "next/image";
+import Navigation from "@/components/auth/Navigation";
 import { Sora } from "next/font/google";
 import { changePassword } from "@/handlers/AuthHandler";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import router from "next/router";
 
 const sora = Sora({ subsets: ["latin"] });
 
@@ -17,8 +17,9 @@ const ResetPassword = () => {
 
   const handlePasswordChange = () => {
     changePassword(supabase, password).then(() => {
-        alert("Password has been changed!")
-        router.push("/")});
+      alert("Password has been changed!");
+      router.push("/");
+    });
   };
 
   return (
@@ -92,7 +93,11 @@ const ResetPassword = () => {
             <button
               onClick={handlePasswordChange}
               className="btn-primary w-full max-w-none"
-              disabled={password === "" || confirmPassword === "" || password !== confirmPassword}
+              disabled={
+                password === "" ||
+                confirmPassword === "" ||
+                password !== confirmPassword
+              }
             >
               Reset Password
             </button>

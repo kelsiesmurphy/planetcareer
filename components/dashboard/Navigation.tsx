@@ -3,7 +3,6 @@ import { HelpCircle, X } from "react-feather";
 import menuIcon from "../../assets/menu.svg";
 import layoutIcon from "../../assets/layout.svg";
 import briefcaseIcon from "../../assets/briefcase.svg";
-import homeIcon from "../../assets/home-smile.svg";
 import settingsIcon from "../../assets/settings.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";

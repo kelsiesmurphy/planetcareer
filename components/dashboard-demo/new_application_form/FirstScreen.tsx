@@ -1,6 +1,5 @@
 import UrlInput from "./UrlInput";
 import StageInput from "./StageInput";
-
 import CompanyInput from "./CompanyInput";
 
 const FirstScreen = ({

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import TableLine from "./TableLine";
-import AddApplication from "./new_application_form/AddApplication";
 import { createJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
 import { getApplicationsByPeriod } from "@/handlers/ApplicationHandler";
 import { getAllStages } from "@/handlers/StageHandler";
+import TableLine from "./TableLine";
+import AddApplication from "./new_application_form/AddApplication";
 import LoadingSkeleton from "./LoadingSkeleton";
 
 const Table = ({ userProfile, supabase }: any) => {

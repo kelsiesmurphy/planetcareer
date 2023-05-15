@@ -1,4 +1,4 @@
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession } from "@supabase/auth-helpers-react";
 import Head from "next/head";
 import Navigation from "@/components/index/Navigation";
 import Hero from "@/components/index/Hero";

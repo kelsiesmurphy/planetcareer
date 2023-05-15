@@ -27,9 +27,9 @@ const Login = () => {
         <Navigation />
         <div className="flex-1 flex p-12 md:p-24 px-4 justify-center">
           {authType === "Log in" ? (
-            <LoginScreen setAuthType={setAuthType} font={sora}/>
+            <LoginScreen setAuthType={setAuthType} font={sora} />
           ) : (
-            <SignupScreen setAuthType={setAuthType} font={sora}/>
+            <SignupScreen setAuthType={setAuthType} font={sora} />
           )}
         </div>
       </main>

@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { faqItems } from "../../content/faqs";
-import TypeformButton from "../TypeformButton";
 import { contactFormID } from "../../content/typeformIds";
+import TypeformButton from "../TypeformButton";
 
 const Faq = ({ font }: any) => {
   return (
@@ -16,7 +15,12 @@ const Faq = ({ font }: any) => {
       <p className="text-stone-600 text-lg md:text-xl max-w-3xl">
         If you have questions, check below. Can&apos;t find the answer
         you&apos;re looking for? Reach out and{" "}
-        <TypeformButton id={contactFormID} styling="underline" text="say hello" />.
+        <TypeformButton
+          id={contactFormID}
+          styling="underline"
+          text="say hello"
+        />
+        .
       </p>
       <ul className="flex flex-wrap justify-between gap-8 max-w-7xl">
         {faqItems.map((faq, index) => {
@@ -30,7 +34,17 @@ const Faq = ({ font }: any) => {
           );
         })}
       </ul>
-      <p className="max-w-4xl text-stone-600">Currently we're in alpha, so you might find a few bugs as you explore PlanetCareer. If you want to see the issues we're working on, we have a <a className="underline" target="_blank" href="https://planetcareer.notion.site/Known-Issues-6bf1c442fd764cedbf2f509d3a16157e">handy Notion page for known issues.</a></p>
+      <p className="max-w-4xl text-stone-600">
+        Currently we're in alpha, so you might find a few bugs as you explore
+        PlanetCareer. If you want to see the issues we're working on, we have a{" "}
+        <a
+          className="underline"
+          target="_blank"
+          href="https://planetcareer.notion.site/Known-Issues-6bf1c442fd764cedbf2f509d3a16157e"
+        >
+          handy Notion page for known issues.
+        </a>
+      </p>
     </section>
   );
 };

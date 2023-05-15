@@ -21,7 +21,7 @@ export default function Dashboard() {
   >("job-hunt");
 
   const getUserProfile = async () => {
-    const { data, error } = await supabase.from("user_profile").select();
+    const { data } = await supabase.from("user_profile").select();
     setUserProfile(data?.[0]);
   };
 
@@ -95,6 +95,18 @@ export default function Dashboard() {
       </>
     );
   } else {
-    return <h1>Error: Cannot access this page unless you are logged in. If you are encountering issues, please ensure you are <button className="text-green-800" onClick={() => signOut(supabase, Router)}>signed out</button> correctly</h1>;
+    return (
+      <h1>
+        Error: Cannot access this page unless you are logged in. If you are
+        encountering issues, please ensure you are{" "}
+        <button
+          className="text-green-800"
+          onClick={() => signOut(supabase, Router)}
+        >
+          signed out
+        </button>{" "}
+        correctly
+      </h1>
+    );
   }
 }

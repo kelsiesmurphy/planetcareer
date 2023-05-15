@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  useUser,
-  useSupabaseClient,
-  Session,
-} from "@supabase/auth-helpers-react";
+import { useUser } from "@supabase/auth-helpers-react";
 import { Database } from "../../utils/database.types";
 import Avatar from "./Upload";
 import router from "next/router";
@@ -11,7 +7,6 @@ import { signOut } from "@/handlers/AuthHandler";
 type UserProfile = Database["public"]["Tables"]["user_profile"]["Row"];
 
 const Account = ({ session, supabase }: any) => {
-  // const supabase = useSupabaseClient<Database>();
   const user = useUser();
   const [loading, setLoading] = useState(true);
   const [first_name, setFirstName] = useState<UserProfile["first_name"]>(null);
@@ -127,7 +122,10 @@ const Account = ({ session, supabase }: any) => {
         </div>
 
         <div className="flex pt-12 flex-wrap justify-end gap-4">
-          <button className="btn-secondary w-full" onClick={() => signOut(supabase, router)}>
+          <button
+            className="btn-secondary w-full"
+            onClick={() => signOut(supabase, router)}
+          >
             Sign Out
           </button>
           <button

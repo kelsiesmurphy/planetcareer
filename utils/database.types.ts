@@ -15,14 +15,14 @@ export interface Database {
           closing_date: string | null
           company_logo: string | null
           company_name: string | null
-          cover_letter: string | null
+          cover_letter: Json | null
           created_at: string | null
           further_details: string | null
           id: number
           job_application_period_id: number | null
           pay_range: string | null
           posting_url: string | null
-          resume: string | null
+          resume: Json | null
           role: string | null
           stage_id: number | null
           user_profile_id: string | null
@@ -32,14 +32,14 @@ export interface Database {
           closing_date?: string | null
           company_logo?: string | null
           company_name?: string | null
-          cover_letter?: string | null
+          cover_letter?: Json | null
           created_at?: string | null
           further_details?: string | null
           id?: number
           job_application_period_id?: number | null
           pay_range?: string | null
           posting_url?: string | null
-          resume?: string | null
+          resume?: Json | null
           role?: string | null
           stage_id?: number | null
           user_profile_id?: string | null
@@ -49,17 +49,64 @@ export interface Database {
           closing_date?: string | null
           company_logo?: string | null
           company_name?: string | null
-          cover_letter?: string | null
+          cover_letter?: Json | null
           created_at?: string | null
           further_details?: string | null
           id?: number
           job_application_period_id?: number | null
           pay_range?: string | null
           posting_url?: string | null
-          resume?: string | null
+          resume?: Json | null
           role?: string | null
           stage_id?: number | null
           user_profile_id?: string | null
+        }
+      }
+      application_demo: {
+        Row: {
+          applied_date: string | null
+          closing_date: string | null
+          company_logo: string | null
+          company_name: string | null
+          cover_letter: Json | null
+          created_at: string | null
+          further_details: string | null
+          id: number
+          pay_range: string | null
+          posting_url: string | null
+          resume: Json | null
+          role: string | null
+          stage_id: number | null
+        }
+        Insert: {
+          applied_date?: string | null
+          closing_date?: string | null
+          company_logo?: string | null
+          company_name?: string | null
+          cover_letter?: Json | null
+          created_at?: string | null
+          further_details?: string | null
+          id?: number
+          pay_range?: string | null
+          posting_url?: string | null
+          resume?: Json | null
+          role?: string | null
+          stage_id?: number | null
+        }
+        Update: {
+          applied_date?: string | null
+          closing_date?: string | null
+          company_logo?: string | null
+          company_name?: string | null
+          cover_letter?: Json | null
+          created_at?: string | null
+          further_details?: string | null
+          id?: number
+          pay_range?: string | null
+          posting_url?: string | null
+          resume?: Json | null
+          role?: string | null
+          stage_id?: number | null
         }
       }
       job_application_period: {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const LoginButton = ({ session }:any) => {
+const LoginButton = ({ session }: any) => {
   return (
     <>
       {!session ? (

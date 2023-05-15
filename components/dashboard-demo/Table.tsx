@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { getAllStages } from "@/handlers/StageHandler";
 import TableLine from "./TableLine";
 import AddApplication from "./new_application_form/AddApplication";
-import { getAllStages } from "@/handlers/StageHandler";
 import LoadingSkeleton from "./LoadingSkeleton";
 
 const Table = ({ supabase }: any) => {

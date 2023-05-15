@@ -1,9 +1,9 @@
 import { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Briefcase, Plus, X } from "react-feather";
+import { insertApplication } from "@/handlers/ApplicationHandler";
 import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";
-import { insertApplication } from "@/handlers/ApplicationHandler";
 
 const AddApplication = ({
   supabase,
@@ -28,7 +28,7 @@ const AddApplication = ({
       Role: "",
       Resume: {},
       CoverLetter: {},
-      AppliedDate: new Date().toLocaleDateString('en-CA'),
+      AppliedDate: new Date().toLocaleDateString("en-CA"),
       FurtherDetails: "",
     });
   }, [stages]);
@@ -49,7 +49,7 @@ const AddApplication = ({
       Role: "",
       Resume: {},
       CoverLetter: {},
-      AppliedDate: new Date().toLocaleDateString('en-CA'),
+      AppliedDate: new Date().toLocaleDateString("en-CA"),
       FurtherDetails: "",
     });
   };
@@ -60,8 +60,8 @@ const AddApplication = ({
         (res) => {
           getApplications(job_period_id);
           const tableLinesDup = [...tableLines];
-          tableLinesDup.push(res[0])
-          setTableLines(tableLinesDup)
+          tableLinesDup.push(res[0]);
+          setTableLines(tableLinesDup);
         }
       );
     } catch (error) {
