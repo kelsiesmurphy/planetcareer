@@ -38,7 +38,6 @@ const CompanyInput = ({ values, handleChange }: any) => {
   };
 
   const changeCompany = (company: any) => {
-    console.log(company);
     const result = {
       target: {
         name: "Company",
@@ -49,7 +48,6 @@ const CompanyInput = ({ values, handleChange }: any) => {
   };
 
   const changeCompanyCustom = () => {
-    console.log(query);
     const result = {
       target: {
         name: "Company",

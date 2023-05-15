@@ -171,6 +171,8 @@ const EditApplication = ({
                         setEditApplicationOpen={setIsOpen}
                         tableLine={tableLine}
                         supabase={supabase}
+                        tableLines={tableLines}
+                        setTableLines={setTableLines}
                       />
                       <button
                         className="p-2.5 focus:outline-green-700"

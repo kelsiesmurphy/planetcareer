@@ -27,7 +27,7 @@ const CompanyInput = ({ values, handleChange }: any) => {
         .then((response) => response.json())
         .then((data) => setCompanies(data));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

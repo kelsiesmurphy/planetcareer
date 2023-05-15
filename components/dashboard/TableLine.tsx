@@ -56,9 +56,9 @@ const TableLine = ({
     );
   };
 
-  const setEditApplicationOpen = (bool:boolean) => {
-    return bool
-  }
+  const setEditApplicationOpen = (bool: boolean) => {
+    return bool;
+  };
 
   return (
     <tr className="flex flex-1 justify-between items-center gap-1 border-b py-3 odd:bg-stone-50">
@@ -124,7 +124,13 @@ const TableLine = ({
           setTableLines={setTableLines}
           isText={false}
         />
-        <DeleteApplicationButton setEditApplicationOpen={() => setEditApplicationOpen(false)} tableLine={tableLine} supabase={supabase} />
+        <DeleteApplicationButton
+          setEditApplicationOpen={() => setEditApplicationOpen(false)}
+          tableLine={tableLine}
+          supabase={supabase}
+          tableLines={tableLines}
+          setTableLines={setTableLines}
+        />
       </td>
     </tr>
   );

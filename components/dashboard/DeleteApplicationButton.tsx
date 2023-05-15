@@ -7,13 +7,17 @@ const DeleteApplicationButton = ({
   setEditApplicationOpen,
   supabase,
   tableLine,
+  tableLines,
+  setTableLines
 }: any) => {
   let [isOpen, setIsOpen] = useState(false);
 
   const handleDeleteApplication = () => {
     try {
       deleteApplication(supabase, tableLine).then(() => {
-        console.log("need to immutably update edit on change");
+        let dupTableLines = [...tableLines]
+        dupTableLines.splice(tableLines.indexOf(tableLine), 1)
+        setTableLines(dupTableLines)
       });
     } catch (error) {
       alert("Error submitting application");
