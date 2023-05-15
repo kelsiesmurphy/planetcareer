@@ -5,6 +5,7 @@ import { getAllStages } from "@/handlers/StageHandler";
 import TableLine from "./TableLine";
 import AddApplication from "./new_application_form/AddApplication";
 import LoadingSkeleton from "./LoadingSkeleton";
+import TableEmptyState from "./TableEmptyState";
 
 const Table = ({ userProfile, supabase }: any) => {
   const [jobApplicationPeriod, setJobApplicationPeriod] = useState<any>({});
@@ -104,7 +105,19 @@ const Table = ({ userProfile, supabase }: any) => {
           </tr>
         </thead>
         <tbody>
-          {isLoading ? (
+          {isLoading === false && tableLines.length === 0 ? (
+            <TableEmptyState>
+              <AddApplication
+                supabase={supabase}
+                stages={stages}
+                job_period_id={jobApplicationPeriod.id}
+                userProfile={userProfile.id}
+                getApplications={getApplications}
+                tableLines={tableLines}
+                setTableLines={setTableLines}
+              />
+            </TableEmptyState>
+          ) : isLoading ? (
             <>
               <LoadingSkeleton />
               <LoadingSkeleton />
