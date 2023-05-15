@@ -132,6 +132,9 @@ const CompanyInput = ({ values, handleChange }: any) => {
                         </Combobox.Option>
                       ))
                     )}
+                    <Combobox.Option value={{ id: null, name: query }}>
+                      Create "{query}"
+                    </Combobox.Option>
                   </Combobox.Options>
                 </Transition>
               </div>

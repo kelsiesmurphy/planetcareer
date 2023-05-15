@@ -16,12 +16,32 @@ const TableLine = ({
 }: any) => {
   const [tableLine, setTableLine] = useState(tableLineItem);
   const [currentStage, setCurrentStage] = useState({});
+  const [placeholder, setPlaceholder] = useState("");
+
+  const placeholderColours = [
+    {
+      bgColour: "#fee2e2",
+      textColour: "#991b1b",
+    },
+    {
+      bgColour: "#ffedd5",
+      textColour: "#9a3412",
+    },
+  ];
 
   useEffect(() => {
     setCurrentStage(
       stages.filter((stage: any) => stage.id === tableLine.stage_id)[0]
     );
   }, [stages]);
+
+  useEffect(() => {
+    if (tableLine) {
+      fetch(
+        `https://ui-avatars.com/api/?name=${tableLine.company_name}&background=EAECF0&color=475467&bold=true`
+      ).then((data) => setPlaceholder(data.url));
+    }
+  }, [tableLine]);
 
   const handleChangeStage = async (stage: any) => {
     updateApplicationStage(supabase, tableLine, stage).then(
@@ -48,6 +68,7 @@ const TableLine = ({
           tableLines={tableLines}
           setTableLines={setTableLines}
           isText={true}
+          placeholder={placeholder}
         />
       </td>
       <td className="flex min-w-[154px] items-center gap-3 px-4 text-sm text-stone-500">

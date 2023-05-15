@@ -16,6 +16,7 @@ const EditApplication = ({
   setTableLines,
   tableLine,
   isText,
+  placeholder,
 }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [secondScreen, setSecondScreen] = useState(false);
@@ -26,7 +27,7 @@ const EditApplication = ({
     setValues({
       Company: {
         name: tableLine.company_name,
-        logo: tableLine.company_logo,
+        logo: tableLine.company_logo ? tableLine.company_logo : placeholder,
       },
       Url: tableLine.posting_url,
       PayRange: tableLine.pay_range,
@@ -108,16 +109,14 @@ const EditApplication = ({
           onClick={() => setIsOpen(true)}
           className="text-slate-900 flex gap-3 items-center font-medium hover:underline"
         >
-          {tableLine.company_logo && (
-            <Image
-              width="0"
-              height="0"
-              unoptimized
-              alt={tableLine.company_name + "company logo"}
-              src={tableLine.company_logo}
-              className="rounded-full w-8 md:w-10 aspect-square"
-            />
-          )}
+          {placeholder && <Image
+            width="0"
+            height="0"
+            unoptimized
+            alt={tableLine.company_name + "company logo"}
+            src={tableLine.company_logo ? tableLine.company_logo : placeholder}
+            className="rounded-full w-8 md:w-10 aspect-square"
+          />}
           <p className="text-left text-slate-900 font-medium hover:underline">
             {tableLine.company_name}
           </p>

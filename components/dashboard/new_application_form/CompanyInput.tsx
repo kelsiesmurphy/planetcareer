@@ -1,5 +1,5 @@
 import { useState, Fragment } from "react";
-import { Check, ChevronDown, Search } from "react-feather";
+import { Check, ChevronDown, Plus, Search } from "react-feather";
 import { Combobox, Transition } from "@headlessui/react";
 import Image from "next/image";
 
@@ -38,10 +38,22 @@ const CompanyInput = ({ values, handleChange }: any) => {
   };
 
   const changeCompany = (company: any) => {
+    console.log(company);
     const result = {
       target: {
         name: "Company",
         value: company,
+      },
+    };
+    handleChange(result);
+  };
+
+  const changeCompanyCustom = () => {
+    console.log(query);
+    const result = {
+      target: {
+        name: "Company",
+        value: query,
       },
     };
     handleChange(result);
@@ -57,7 +69,6 @@ const CompanyInput = ({ values, handleChange }: any) => {
           <div className="p-2.5 pr-0">
             <Search size={20} className="text-stone-600" />
           </div>
-
           <div className="flex-1">
             <Combobox value={values.Company} onChange={(e) => changeCompany(e)}>
               <div className="relative">
@@ -132,6 +143,18 @@ const CompanyInput = ({ values, handleChange }: any) => {
                         </Combobox.Option>
                       ))
                     )}
+                    <Combobox.Option
+                      value={{ domain: "", logo: "", name: query }}
+                      className={({ active }) =>
+                        `relative cursor-pointer select-none flex gap-1 py-4 font-medium text-stone-700 pl-7 transition-colors pr-4 ${
+                          active ? "bg-stone-100" : "text-gray-900"
+                        }`
+                      }
+                      onClick={changeCompanyCustom}
+                    >
+                      <Plus size={20} />
+                      Create "{query}"
+                    </Combobox.Option>
                   </Combobox.Options>
                 </Transition>
               </div>
