@@ -16,6 +16,8 @@ const TableLine = ({
 }: any) => {
   const [tableLine, setTableLine] = useState(tableLineItem);
   const [currentStage, setCurrentStage] = useState({});
+  
+  console.log(tableLine)
 
   useEffect(() => {
     setCurrentStage(
