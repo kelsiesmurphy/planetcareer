@@ -23,7 +23,6 @@ const EditApplication = ({
   const [values, setValues] = useState<any>({});
 
   useEffect(() => {
-    console.log(tableLine)
     setValues({
       Company: {
         name: tableLine.company_name,
