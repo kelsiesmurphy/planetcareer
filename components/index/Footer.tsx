@@ -22,9 +22,24 @@ const Footer = () => {
         <div className="flex flex-wrap-reverse gap-4 justify-between text-stone-500">
           <p>© 2023 PlanetCareer. All rights reserved.</p>
           <ul className="flex gap-4">
-            <li>Terms</li>
-            <li>Privacy</li>
-            <li>Cookies</li>
+            <li>
+              <a href="https://app.getterms.io/view/BI8dN/tos/en-au" target="_blank">Terms</a>
+            </li>
+            <li>
+              <a href="https://app.getterms.io/view/BI8dN/privacy/en-au" target="_blank">
+                Privacy
+              </a>
+            </li>
+            <li>
+              <a href="https://app.getterms.io/view/BI8dN/cookie/en-au" target="_blank">
+                Cookies
+              </a>
+            </li>
+            <li>
+              <a href="https://app.getterms.io/view/BI8dN/aup/en-au" target="_blank">
+                Acceptable Use
+              </a>
+            </li>
           </ul>
         </div>
       </div>

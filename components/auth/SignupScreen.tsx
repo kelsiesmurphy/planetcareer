@@ -4,6 +4,7 @@ import { createSignUp } from "@/handlers/AuthHandler";
 import Image from "next/image";
 import router from "next/router";
 import Alert from "../Alert";
+import { Switch } from "@headlessui/react";
 
 const SignupScreen = ({ setAuthType, font }: any) => {
   const supabase = useSupabaseClient();
@@ -13,6 +14,7 @@ const SignupScreen = ({ setAuthType, font }: any) => {
   const [password, setPassword] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState({});
+  const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
 
   const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -111,6 +113,45 @@ const SignupScreen = ({ setAuthType, font }: any) => {
             </p>
           </div>
         </div>
+        <div className="flex items-center">
+          <input
+            id="link-checkbox"
+            type="checkbox"
+            value={acceptedTerms ? "on" : ""}
+            className="accent-green-800 w-4 h-4"
+            onChange={() => setAcceptedTerms(!acceptedTerms)}
+          />
+          <label
+            htmlFor="link-checkbox"
+            className="ml-2 text-sm font-medium text-stone-700"
+          >
+            I agree with the{" "}
+            <a
+              href="https://app.getterms.io/view/BI8dN/tos/en-au"
+              target="_blank"
+              className="text-green-700 hover:underline"
+            >
+              terms and conditions
+            </a>
+            ,{" "}
+            <a
+              href="https://app.getterms.io/view/BI8dN/privacy/en-au"
+              target="_blank"
+              className="text-green-700 hover:underline"
+            >
+              privacy policy
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://app.getterms.io/view/BI8dN/aup/en-au"
+              target="_blank"
+              className="text-green-700 hover:underline"
+            >
+              acceptable use policy
+            </a>
+            .
+          </label>
+        </div>
         <button
           onClick={handleSignup}
           className="btn-primary w-full max-w-none"
@@ -119,7 +160,8 @@ const SignupScreen = ({ setAuthType, font }: any) => {
             !email.includes("@") ||
             password === "" ||
             firstName === "" ||
-            password.length <= 6
+            password.length <= 6 ||
+            acceptedTerms !== true
           }
         >
           Get started
