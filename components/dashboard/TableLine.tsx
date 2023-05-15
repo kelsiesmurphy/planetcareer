@@ -116,6 +116,7 @@ const TableLine = ({
       <td className="hidden md:flex w-24 justify-center items-center gap-4 px-4 text-stone-500">
         <EditApplication
           tableLine={tableLine}
+          setTableLine={setTableLine}
           supabase={supabase}
           stages={stages}
           job_period_id={jobApplicationId}

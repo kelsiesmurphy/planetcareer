@@ -15,6 +15,7 @@ const EditApplication = ({
   tableLines,
   setTableLines,
   tableLine,
+  setTableLine,
   isText,
   placeholder,
 }: any) => {
@@ -85,14 +86,14 @@ const EditApplication = ({
         userProfileId,
         job_period_id
       ).then((res) => {
-        const tableLinesDup = tableLines.map((a: any) => {
-          let returnValue = { ...a };
-          if (a.id == tableLine.id) {
-            returnValue = res[0];
-          }
-          return returnValue;
-        });
-        setTableLines(tableLinesDup);
+        const dupTableLines = [...tableLines];
+        console.log(dupTableLines);
+        const indexOfEdited = tableLines.indexOf(tableLine);
+        console.log(indexOfEdited);
+        dupTableLines[indexOfEdited] = res[0];
+        console.log(dupTableLines);
+        setTableLines(dupTableLines);
+        setTableLine(res[0]);
       });
     } catch (error) {
       alert("Error submitting application");
@@ -109,14 +110,18 @@ const EditApplication = ({
           onClick={() => setIsOpen(true)}
           className="text-slate-900 flex gap-3 items-center font-medium hover:underline"
         >
-          {placeholder && <Image
-            width="0"
-            height="0"
-            unoptimized
-            alt={tableLine.company_name + "company logo"}
-            src={tableLine.company_logo ? tableLine.company_logo : placeholder}
-            className="rounded-full w-8 md:w-10 aspect-square"
-          />}
+          {placeholder && (
+            <Image
+              width="0"
+              height="0"
+              unoptimized
+              alt={tableLine.company_name + "company logo"}
+              src={
+                tableLine.company_logo ? tableLine.company_logo : placeholder
+              }
+              className="rounded-full w-8 md:w-10 aspect-square"
+            />
+          )}
           <p className="text-left text-slate-900 font-medium hover:underline">
             {tableLine.company_name}
           </p>
