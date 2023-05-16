@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { HelpCircle, X } from "react-feather";
+import { AlertCircle, X } from "react-feather";
 import menuIcon from "../../assets/menu.svg";
 import layoutIcon from "../../assets/layout.svg";
 import briefcaseIcon from "../../assets/briefcase.svg";
@@ -169,7 +169,7 @@ const Navigation = ({
               id={issueFormID}
               styling="z-10 absolute top-0  w-9 h-9 hover:text-stone-800"
             />
-            <HelpCircle size={24} className="z-0" />
+            <AlertCircle size={24} className="z-0" />
           </div>
           <button
             className={`p-3 hover:text-stone-800 rounded-lg transition-colors ${
