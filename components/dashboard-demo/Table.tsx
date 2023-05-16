@@ -58,7 +58,7 @@ const Table = ({ supabase }: any) => {
               <h4 className="text-xs font-medium text-stone-600">Role</h4>
             </th>
             <th className="hidden w-[100px] px-4 sm:flex">
-              <h4 className="text-xs font-medium text-stone-600">Pay Range</h4>
+              <h4 className="text-xs font-medium text-stone-600">Salary</h4>
             </th>
             <th className="hidden flex-1 max-w-[270px] px-4 xl:flex">
               <h4 className="text-xs font-medium text-stone-600">Documents</h4>

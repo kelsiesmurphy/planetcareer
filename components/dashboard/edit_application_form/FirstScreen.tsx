@@ -24,7 +24,7 @@ const FirstScreen = ({
             htmlFor="Pay Range"
             className="font-medium text-sm text-stone-700"
           >
-            Pay Range
+            Salary
           </label>
           <input
             onChange={handleChange}
