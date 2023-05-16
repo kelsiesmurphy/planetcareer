@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { createSignUp } from "@/handlers/AuthHandler";
+import { createSignUp, updateUserWithPlunk } from "@/handlers/AuthHandler";
+import {
+  createPlunkContact,
+  triggerPlunkEvent,
+} from "@/handlers/PlunkEmailHandler";
 import Image from "next/image";
 import router from "next/router";
 import Alert from "../Alert";
-import { Switch } from "@headlessui/react";
 
 const SignupScreen = ({ setAuthType, font }: any) => {
   const supabase = useSupabaseClient();
@@ -15,15 +18,22 @@ const SignupScreen = ({ setAuthType, font }: any) => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState({});
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
+  const [mailingList, setMailingList] = useState<boolean>(true);
 
   const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
       createSignUp(supabase, firstName, email, password).then((res) => {
         if (res.data.user !== null) {
+          createPlunkContact(firstName, email, mailingList, res.data.user.id)
+            .then((res) => res.json())
+            .then((plunkData) => {
+              updateUserWithPlunk(supabase, res.data.user.id, plunkData.id);
+              triggerPlunkEvent("join-planetcareer", email);
+            });
           res.data.user.id && router.push("/dashboard");
         }
-        if (res.error.message) {
+        if (res.error && res.error.message) {
           setAlertMessage(res.error.message);
           setAlertOpen(true);
         }
@@ -113,44 +123,63 @@ const SignupScreen = ({ setAuthType, font }: any) => {
             </p>
           </div>
         </div>
-        <div className="flex items-center">
-          <input
-            id="link-checkbox"
-            type="checkbox"
-            value={acceptedTerms ? "on" : ""}
-            className="accent-green-800 w-4 h-4"
-            onChange={() => setAcceptedTerms(!acceptedTerms)}
-          />
-          <label
-            htmlFor="link-checkbox"
-            className="ml-2 text-sm font-medium text-stone-700"
-          >
-            I agree with the{" "}
-            <a
-              href="https://app.getterms.io/view/BI8dN/tos/en-au"
-              target="_blank"
-              className="text-green-700 hover:underline"
+        <div className="space-y-3">
+          <div className="flex gap-3 items-center">
+            <input
+              id="link-checkbox-mailing"
+              type="checkbox"
+              value={mailingList === true ? "on" : ""}
+              className="accent-green-700 cursor-pointer w-4 h-4"
+              onChange={() => setMailingList(!mailingList)}
+              checked={mailingList}
+            />
+            <label
+              htmlFor="link-checkbox-mailing"
+              className="text-sm max-w-xs font-medium text-stone-600"
             >
-              terms and conditions
-            </a>
-            ,{" "}
-            <a
-              href="https://app.getterms.io/view/BI8dN/privacy/en-au"
-              target="_blank"
-              className="text-green-700 hover:underline"
+              Join our newsletter for tips to get your dream job, and the
+              occasional update on new features.
+            </label>
+          </div>
+          <div className="flex gap-3 items-center">
+            <input
+              id="link-checkbox"
+              type="checkbox"
+              value={acceptedTerms ? "on" : ""}
+              className="accent-green-700 cursor-pointer w-4 h-4"
+              onChange={() => setAcceptedTerms(!acceptedTerms)}
+            />
+            <label
+              htmlFor="link-checkbox"
+              className="text-sm max-w-xs font-medium text-stone-600"
             >
-              privacy policy
-            </a>{" "}
-            and{" "}
-            <a
-              href="https://app.getterms.io/view/BI8dN/aup/en-au"
-              target="_blank"
-              className="text-green-700 hover:underline"
-            >
-              acceptable use policy
-            </a>
-            .
-          </label>
+              By signing up, I agree with the{" "}
+              <a
+                href="https://app.getterms.io/view/BI8dN/tos/en-au"
+                target="_blank"
+                className="text-green-700 hover:underline"
+              >
+                terms and conditions
+              </a>
+              ,{" "}
+              <a
+                href="https://app.getterms.io/view/BI8dN/privacy/en-au"
+                target="_blank"
+                className="text-green-700 hover:underline"
+              >
+                privacy policy
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://app.getterms.io/view/BI8dN/aup/en-au"
+                target="_blank"
+                className="text-green-700 hover:underline"
+              >
+                acceptable use policy
+              </a>
+              .
+            </label>
+          </div>
         </div>
         <button
           onClick={handleSignup}

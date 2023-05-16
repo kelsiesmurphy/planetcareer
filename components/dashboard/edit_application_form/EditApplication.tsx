@@ -87,11 +87,8 @@ const EditApplication = ({
         job_period_id
       ).then((res) => {
         const dupTableLines = [...tableLines];
-        console.log(dupTableLines);
         const indexOfEdited = tableLines.indexOf(tableLine);
-        console.log(indexOfEdited);
         dupTableLines[indexOfEdited] = res[0];
-        console.log(dupTableLines);
         setTableLines(dupTableLines);
         setTableLine(res[0]);
       });

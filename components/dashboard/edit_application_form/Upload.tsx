@@ -45,7 +45,6 @@ export default function FileUpload({
       }
 
       const file = event.target.files[0];
-      console.log(file);
 
       let { error: uploadError } = await supabase.storage
         .from("files")

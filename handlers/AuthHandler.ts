@@ -19,6 +19,14 @@ export const loginUser = async(supabase:any, email:string, password:string) => {
     return result;
 }
 
+export const updateUserWithPlunk = async(supabase:any, id:string, plunkId:string) => {
+    const result = await supabase
+        .from('user_profile')
+        .update({ plunk_id: plunkId })
+        .eq('id', id)
+    return result;
+}
+
 export const signOut = async (supabase:any, router:any) => {
     supabase.auth.signOut().then(() => router.push("/"));
 }

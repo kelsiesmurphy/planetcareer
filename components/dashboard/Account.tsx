@@ -4,18 +4,39 @@ import { Database } from "../../utils/database.types";
 import Avatar from "./Upload";
 import router from "next/router";
 import { signOut } from "@/handlers/AuthHandler";
+import { Switch } from "@headlessui/react";
 type UserProfile = Database["public"]["Tables"]["user_profile"]["Row"];
+import {
+  getPlunkContact,
+  subscribePlunkContact,
+  unsubscribePlunkContact,
+} from "@/handlers/PlunkEmailHandler";
+import { LogOut } from "react-feather";
 
 const Account = ({ session, supabase }: any) => {
   const user = useUser();
   const [loading, setLoading] = useState(true);
+  const [userProfile, setUserProfile] = useState<any>(null);
   const [first_name, setFirstName] = useState<UserProfile["first_name"]>(null);
   const [profile_img, setProfileImg] =
     useState<UserProfile["profile_img"]>(null);
+  const [plunkSubscribed, setPlunkSubscribed] = useState(true);
 
   useEffect(() => {
     getProfile();
   }, [session]);
+
+  useEffect(() => {
+    if (userProfile) {
+      getPlunkData(userProfile.plunk_id);
+    }
+  }, [userProfile]);
+
+  const getPlunkData = async (plunkId: string) => {
+    getPlunkContact(plunkId)
+      .then((res) => res.json())
+      .then((data) => setPlunkSubscribed(data.subscribed));
+  };
 
   async function getProfile() {
     try {
@@ -24,7 +45,7 @@ const Account = ({ session, supabase }: any) => {
 
       let { data, error, status } = await supabase
         .from("user_profile")
-        .select(`first_name, profile_img`)
+        .select("*")
         .eq("id", user.id)
         .single();
 
@@ -35,6 +56,7 @@ const Account = ({ session, supabase }: any) => {
       if (data) {
         setFirstName(data.first_name);
         setProfileImg(data.profile_img);
+        setUserProfile(data);
       }
     } catch (error) {
       console.log(error);
@@ -63,7 +85,7 @@ const Account = ({ session, supabase }: any) => {
 
       let { error } = await supabase.from("user_profile").upsert(updates);
       if (error) throw error;
-      alert("Profile updated!");
+      alert(`First name and profile image have been updated!`);
     } catch (error) {
       alert("Error updating the data!");
       console.log(error);
@@ -71,6 +93,15 @@ const Account = ({ session, supabase }: any) => {
       setLoading(false);
     }
   }
+
+  const handleSubscribedToggle = () => {
+    const plunkId = userProfile.plunk_id;
+    if (plunkSubscribed === true) {
+      unsubscribePlunkContact(plunkId).then(() => getPlunkData(plunkId));
+    } else {
+      subscribePlunkContact(plunkId).then(() => getPlunkData(plunkId));
+    }
+  };
 
   if (user) {
     return (
@@ -88,7 +119,6 @@ const Account = ({ session, supabase }: any) => {
             }}
           />
         </div>
-        <hr />
         <div className="flex flex-wrap max-w-4xl gap-2">
           <label
             htmlFor="first_name"
@@ -103,6 +133,13 @@ const Account = ({ session, supabase }: any) => {
             onChange={(e) => setFirstName(e.target.value)}
             className="input min-w-[200px] flex-1"
           />
+          <button
+            className="btn-primary"
+            onClick={() => updateProfile({ first_name, profile_img })}
+            disabled={loading}
+          >
+            {loading ? "Loading ..." : "Update"}
+          </button>
         </div>
         <hr />
         <div className="flex flex-wrap max-w-4xl gap-2">
@@ -111,6 +148,12 @@ const Account = ({ session, supabase }: any) => {
             className="flex-1 min-w-[200px] max-w-xs font-medium text-sm text-stone-700"
           >
             Email
+            <p className="text-xs font-normal text-stone-500">
+              To update your email address please contact{" "}
+              <a href="mailto:support@planetcareer.co.uk" className="underline">
+                support@planetcareer.co.uk
+              </a>
+            </p>
           </label>
           <input
             id="email"
@@ -120,20 +163,36 @@ const Account = ({ session, supabase }: any) => {
             disabled
           />
         </div>
+        <hr />
+        <div className="flex flex-wrap max-w-4xl gap-2">
+          <label
+            htmlFor="email"
+            className="flex-1 min-w-[200px] max-w-xs font-medium text-sm text-stone-700"
+          >
+            Email Notifications
+          </label>
+          <Switch
+            checked={plunkSubscribed}
+            onChange={handleSubscribedToggle}
+            className={`${plunkSubscribed ? "bg-green-700" : "bg-stone-400"}
+          relative inline-flex h-[36px] w-[72px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+          >
+            <span className="sr-only">Use setting</span>
+            <span
+              aria-hidden="true"
+              className={`${plunkSubscribed ? "translate-x-9" : "translate-x-0"}
+            pointer-events-none inline-block h-[32px] w-[32px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+            />
+          </Switch>
+        </div>
 
         <div className="flex pt-12 flex-wrap justify-end gap-4">
           <button
-            className="btn-secondary w-full"
+            className="btn-secondary w-full gap-4"
             onClick={() => signOut(supabase, router)}
           >
+            <LogOut size={20} />
             Sign Out
-          </button>
-          <button
-            className="btn-primary w-full"
-            onClick={() => updateProfile({ first_name, profile_img })}
-            disabled={loading}
-          >
-            {loading ? "Loading ..." : "Update"}
           </button>
         </div>
       </div>
