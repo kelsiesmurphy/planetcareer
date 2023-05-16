@@ -39,7 +39,7 @@ export default function Dashboard() {
             {userProfile.first_name}&apos;s Dashboard | PlanetCareer
           </title>
           <meta
-            name="description"
+            name="Dashboard"
             content="Keep track of your job search with our application tracker, built to help you secure your dream job. Ethical job board coming soon."
           />
           <meta name="viewport" content="width=device-width, initial-scale=1" />

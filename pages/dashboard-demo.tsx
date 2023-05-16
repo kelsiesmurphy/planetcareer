@@ -25,7 +25,7 @@ export default function Dashboard() {
       <Head>
         <title>Example Dashboard | PlanetCareer</title>
         <meta
-          name="description"
+          name="Example Dashboard"
           content="Keep track of your job search with our application tracker, built to help you secure your dream job. Ethical job board coming soon."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
