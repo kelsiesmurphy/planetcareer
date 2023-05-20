@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { Database } from "../../../utils/database.types";
 import { File, Trash2, UploadCloud } from "react-feather";
 
-export default function FileUpload({
+export default function FileUploadResume({
   url,
   onUpload,
   fileName,
+  userProfileId,
 }: {
   url: any;
   onUpload: (url: string, size: number) => void;
   fileName: string;
+  userProfileId: string;
 }) {
-  const supabase = useSupabaseClient();
-  const [fileUrl, setFileUrl] = useState<any>(url);
+  const supabase = useSupabaseClient<Database>();
+  const [fileUrl, setFileUrl] = useState<any>(null);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -23,7 +26,7 @@ export default function FileUpload({
     try {
       const { data, error } = await supabase.storage
         .from("files")
-        .download(path);
+        .download(`${userProfileId}/${path}`);
       if (error) {
         throw error;
       }
@@ -37,6 +40,7 @@ export default function FileUpload({
   const uploadFile: React.ChangeEventHandler<HTMLInputElement> = async (
     event
   ) => {
+    const currentDate = Date.now();
     try {
       setUploading(true);
 
@@ -48,13 +52,15 @@ export default function FileUpload({
 
       let { error: uploadError } = await supabase.storage
         .from("files")
-        .upload(file.name, file, { upsert: true });
+        .upload(`${userProfileId}/${currentDate}-${file.name}`, file, {
+          upsert: true,
+        });
 
       if (uploadError) {
         throw uploadError;
       }
 
-      onUpload(file.name, file.size);
+      onUpload(`${currentDate}-${file.name}`, file.size);
     } catch (error) {
       alert("Error uploading file!");
       console.log(error);
@@ -96,7 +102,10 @@ export default function FileUpload({
             </div>
           </div>
         ) : (
-          <label htmlFor="dropzone-file" className="w-full cursor-pointer">
+          <label
+            htmlFor="dropzone-file-resume"
+            className="w-full cursor-pointer"
+          >
             <div className="flex p-3 flex-col items-center justify-center gap-1 text-stone-500">
               <div className="p-1">
                 <UploadCloud size={20} />
@@ -110,7 +119,7 @@ export default function FileUpload({
               </p>
             </div>
             <input
-              id="dropzone-file"
+              id="dropzone-file-resume"
               className="hidden absolute cursor-pointer"
               type="file"
               accept="application/pdf"

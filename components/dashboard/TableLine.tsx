@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Globe, Paperclip } from "react-feather";
-import { updateApplicationStage } from "@/handlers/ApplicationHandler";
+import {
+  downloadDocument,
+  updateApplicationStage,
+} from "@/handlers/ApplicationHandler";
 import Dropdown from "./StageDropdown";
 import EditApplication from "./edit_application_form/EditApplication";
 import DeleteApplicationButton from "./DeleteApplicationButton";
+import fs from "fs";
 
 const TableLine = ({
   stages,
@@ -18,22 +22,13 @@ const TableLine = ({
   const [currentStage, setCurrentStage] = useState({});
   const [placeholder, setPlaceholder] = useState("");
 
-  const placeholderColours = [
-    {
-      bgColour: "#fee2e2",
-      textColour: "#991b1b",
-    },
-    {
-      bgColour: "#ffedd5",
-      textColour: "#9a3412",
-    },
-  ];
-
   useEffect(() => {
     setCurrentStage(
       stages.filter((stage: any) => stage.id === tableLine.stage_id)[0]
     );
   }, [stages]);
+
+  // ((bucket_id = 'files'::text) AND (auth.role() = 'authenticated'::text))
 
   useEffect(() => {
     if (tableLine) {
@@ -89,15 +84,25 @@ const TableLine = ({
         {tableLine.pay_range ? tableLine.pay_range : "Not given"}
       </td>
       <td className="hidden xl:flex flex-1 max-w-[270px] flex-wrap items-center gap-3 px-4 text-sm text-stone-500">
-        <div className="rounded-full flex gap-2 items-center py-1 px-3 font-medium bg-green-100 text-green-700">
-          <Paperclip size={12} />
-          Resume
-        </div>
-        {tableLine.cover_letter && (
-          <div className="rounded-full flex gap-2 items-center py-1 px-3 font-medium bg-blue-100 text-blue-700">
+        {tableLine.resume.url !== "" && (
+          <a
+            href={`https://xddplurlgjvqtjiyodqt.supabase.co/storage/v1/object/public/files/${userProfileId}/${tableLine.resume.url}`}
+            target="_blank"
+            className="rounded-full flex gap-2 items-center py-1 px-3 font-medium bg-green-100 text-green-700"
+          >
+            <Paperclip size={12} />
+            Resume
+          </a>
+        )}
+        {tableLine.cover_letter.url !== "" && (
+          <a
+            href={`https://xddplurlgjvqtjiyodqt.supabase.co/storage/v1/object/public/files/${userProfileId}/${tableLine.cover_letter.url}`}
+            target="_blank"
+            className="rounded-full flex gap-2 items-center py-1 px-3 font-medium bg-blue-100 text-blue-700"
+          >
             <Paperclip size={12} />
             Cover Letter
-          </div>
+          </a>
         )}
       </td>
       <td className="hidden sm:flex flex-1 max-w-[60px] items-center gap-3 px-4 text-sm text-stone-500">

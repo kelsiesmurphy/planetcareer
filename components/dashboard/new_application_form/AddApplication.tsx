@@ -26,8 +26,14 @@ const AddApplication = ({
       PayRange: "",
       Stage: stages[0],
       Role: "",
-      Resume: {},
-      CoverLetter: {},
+      Resume: {
+        url: "",
+        size: 0,
+      },
+      CoverLetter: {
+        url: "",
+        size: 0,
+      },
       AppliedDate: new Date().toLocaleDateString("en-CA"),
       FurtherDetails: "",
     });
@@ -47,8 +53,14 @@ const AddApplication = ({
       PayRange: "",
       Stage: stages[0],
       Role: "",
-      Resume: {},
-      CoverLetter: {},
+      Resume: {
+        url: "",
+        size: 0,
+      },
+      CoverLetter: {
+        url: "",
+        size: 0,
+      },
       AppliedDate: new Date().toLocaleDateString("en-CA"),
       FurtherDetails: "",
     });
@@ -133,6 +145,7 @@ const AddApplication = ({
                 </Dialog.Title>
                 {secondScreen ? (
                   <SecondScreen
+                    userProfile={userProfile}
                     setSecondScreen={setSecondScreen}
                     submitApplication={submitApplication}
                     handleChange={handleChange}

@@ -6,11 +6,13 @@ specifiers:
   '@supabase/auth-helpers-react': ^0.3.1
   '@supabase/supabase-js': ^2.21.0
   '@typeform/embed-react': ^2.20.0
+  '@types/js-cookie': ^3.0.3
   '@types/node': 18.16.3
   '@types/react': 18.2.0
   '@types/react-dom': 18.2.1
   '@vercel/analytics': ^1.0.1
   autoprefixer: 10.4.14
+  js-cookie: ^3.0.5
   next: 13.3.4
   postcss: 8.4.23
   react: 18.2.0
@@ -31,6 +33,7 @@ dependencies:
   '@types/react-dom': 18.2.1
   '@vercel/analytics': 1.0.1
   autoprefixer: 10.4.14_postcss@8.4.23
+  js-cookie: 3.0.5
   next: 13.3.4_biqbaboplfbrettd7655fr4n2y
   postcss: 8.4.23
   react: 18.2.0
@@ -39,6 +42,9 @@ dependencies:
   supabase: 1.57.3
   tailwindcss: 3.3.2
   typescript: 5.0.4
+
+devDependencies:
+  '@types/js-cookie': 3.0.3
 
 packages:
 
@@ -302,6 +308,10 @@ packages:
     resolution: {integrity: sha512-87VxaXUJBVsQJz6mA6vjzPF4A57dabmAQRUHcrnRHhWa+urMpvTwrwNQpkuT0f7Bm09Wi2umHsB97n3/T/b4Tw==}
     engines: {node: '>=10'}
     dev: false
+
+  /@types/js-cookie/3.0.3:
+    resolution: {integrity: sha512-Xe7IImK09HP1sv2M/aI+48a20VX+TdRJucfq4vfRVy6nWN8PYPOEnlMRSgxJAgYQIXJVL8dZ4/ilAM7dWNaOww==}
+    dev: true
 
   /@types/node/18.16.3:
     resolution: {integrity: sha512-OPs5WnnT1xkCBiuQrZA4+YAV4HEJejmHneyraIaxsbev5yCEr6KMwINNFP9wQeFIw8FWcoTqF3vQsa5CDaI+8Q==}
@@ -729,6 +739,11 @@ packages:
 
   /jose/4.14.4:
     resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
+    dev: false
+
+  /js-cookie/3.0.5:
+    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
+    engines: {node: '>=14'}
     dev: false
 
   /js-tokens/4.0.0:

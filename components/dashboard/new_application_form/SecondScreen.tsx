@@ -1,7 +1,9 @@
 import { ArrowUpRight } from "react-feather";
-import FileUpload from "./Upload";
+import FileUploadResume from "./UploadResume";
+import FileUploadCoverLetter from "./UploadCoverLetter";
 
 const SecondScreen = ({
+  userProfile,
   setSecondScreen,
   submitApplication,
   handleChange,
@@ -35,19 +37,21 @@ const SecondScreen = ({
 
   return (
     <div className="flex flex-col gap-4">
-      <FileUpload
+      <FileUploadResume
         fileName="Resume"
         url={values.Resume}
         onUpload={(url, size) => {
           handleChangeResume(url, size);
         }}
+        userProfileId={userProfile}
       />
-      <FileUpload
+      <FileUploadCoverLetter
         fileName="Cover Letter"
         url={values.CoverLetter}
         onUpload={(url, size) => {
           handleChangeCoverLetter(url, size);
         }}
+        userProfileId={userProfile}
       />
       <div className="flex-1 flex flex-col gap-1.5">
         <label

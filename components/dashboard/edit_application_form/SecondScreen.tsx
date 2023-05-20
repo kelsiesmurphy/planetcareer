@@ -1,11 +1,13 @@
 import { ArrowUpRight } from "react-feather";
-import FileUpload from "./Upload";
+import FileUploadResume from "./UploadResume";
+import FileUploadCoverLetter from "./UploadCoverLetter";
 
 const SecondScreen = ({
   setSecondScreen,
   submitEditedApplication,
   handleChange,
   values,
+  userProfileId
 }: any) => {
   const handleChangeResume = (url: any, size: any) => {
     const result = {
@@ -35,19 +37,21 @@ const SecondScreen = ({
 
   return (
     <div className="flex flex-col gap-4">
-      <FileUpload
+      <FileUploadResume
         fileName="Resume"
         url={values.Resume}
         onUpload={(url, size) => {
           handleChangeResume(url, size);
         }}
+        userProfileId={userProfileId}
       />
-      <FileUpload
+      <FileUploadCoverLetter
         fileName="Cover Letter"
         url={values.CoverLetter}
         onUpload={(url, size) => {
           handleChangeCoverLetter(url, size);
         }}
+        userProfileId={userProfileId}
       />
       <div className="flex-1 flex flex-col gap-1.5">
         <label

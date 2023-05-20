@@ -83,3 +83,16 @@ export const updateApplication = async (supabase:any, applicationId:any, applica
     }
     return data;
 }
+
+
+export const downloadDocument = async (supabase:any, userProfileId:string, fileName:string) => { 
+    const { data, error } = await supabase
+    .storage
+    .from('files')
+    .download(`${userProfileId}/${fileName}`)
+
+    if (error) {
+        throw error;
+    }
+    return data;
+}
