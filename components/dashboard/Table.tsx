@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
+import { selectJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
 import { getApplicationsByPeriod } from "@/handlers/ApplicationHandler";
 import { getAllStages } from "@/handlers/StageHandler";
 import TableLine from "./TableLine";
@@ -35,7 +35,7 @@ const Table = ({ userProfile, supabase }: any) => {
   async function getJobApplicationPeriod(userProfile: any) {
     try {
       if (userProfile.current_application_period_id) {
-        createJobApplicationPeriod(supabase, userProfile).then(
+        selectJobApplicationPeriod(supabase, userProfile).then(
           (jobApplicationPeriod) => {
             setJobApplicationPeriod(jobApplicationPeriod[0]);
             getApplications(jobApplicationPeriod[0]);

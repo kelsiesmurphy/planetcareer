@@ -3,12 +3,15 @@ import { Fragment, useState } from "react";
 import { X } from "react-feather";
 import { createJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
 import { updateUserApplicationPeriod } from "@/handlers/AuthHandler";
+import { updateJobApplicationPeriodEndDate } from "@/handlers/JobApplicationPeriodHandler";
 import trophy from "../../assets/trophy.svg";
 import Image from "next/image";
 import confetti from "canvas-confetti";
+import Router from "next/router";
 
 const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
   let [isOpen, setIsOpen] = useState(false);
+  const [confirmInput, setConfirmInput] = useState("");
 
   const handleConfetti = () => {
     confetti({
@@ -17,17 +20,28 @@ const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
     });
   };
 
-  const handleGotAJob = () => {
+  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+  const handleGotAJob = async () => {
     try {
+      updateJobApplicationPeriodEndDate(
+        supabase,
+        userProfile.current_application_period_id
+      );
       createJobApplicationPeriod(supabase, userProfile).then((periodId) => {
-        updateUserApplicationPeriod(supabase, userProfile.id, periodId);
+        updateUserApplicationPeriod(supabase, userProfile.id, periodId).then(
+          (updatedUserProfile) => {
+            setUserProfile(updatedUserProfile);
+          }
+        );
       });
       handleConfetti();
+      setIsOpen(false);
+      await delay(3000);
+      Router.reload();
     } catch (error) {
       alert("Error submitting application");
       console.log(error);
-    } finally {
-      setIsOpen(false);
     }
   };
 
@@ -93,11 +107,18 @@ const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
                     </h1>
                     <p className="text-sm text-stone-600">
                       If you've got a job, you won't be needing this list
-                      anymore! Click “confirm” below to clear your list of
+                      anymore! Type 'CONFIRM' below to clear your list of
                       applications, and it will be ready for you if you decide
                       to use it again in the future!
                     </p>
                   </div>
+                  <input
+                    className="input w-full"
+                    onChange={(e) => setConfirmInput(e.target.value)}
+                    value={confirmInput}
+                    name="confirmInput"
+                    placeholder="CONFIRM"
+                  />
                 </Dialog.Title>
                 <div className="flex flex-wrap flex-1 gap-4">
                   <button
@@ -108,7 +129,8 @@ const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
                   </button>
                   <button
                     className="btn-primary flex-1 max-w-none"
-                    onClick={handleGotAJob}
+                    onClick={() => handleGotAJob()}
+                    disabled={confirmInput !== "CONFIRM"}
                   >
                     Confirm
                   </button>

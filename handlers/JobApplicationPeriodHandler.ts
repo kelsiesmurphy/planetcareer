@@ -9,6 +9,17 @@ export const selectJobApplicationPeriod = async (supabase:any, userProfile:any) 
     return data;
 };
 
+export const updateJobApplicationPeriodEndDate = async (supabase:any, jobApplicationId:string) => {
+    const { data, error } = await supabase
+        .from("job_application_period")
+        .update({ end_date: new Date().toISOString().toLocaleString() })
+        .eq('id', jobApplicationId)
+    if (error) {
+        throw error;
+    }
+    return data;
+};
+
 export const createJobApplicationPeriod = async (supabase:any, userProfile:any) => {
     const { data, error } = await supabase
         .from("job_application_period")
