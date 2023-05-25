@@ -6,12 +6,14 @@ specifiers:
   '@supabase/auth-helpers-react': ^0.3.1
   '@supabase/supabase-js': ^2.21.0
   '@typeform/embed-react': ^2.20.0
+  '@types/canvas-confetti': ^1.6.0
   '@types/js-cookie': ^3.0.3
   '@types/node': 18.16.3
   '@types/react': 18.2.0
   '@types/react-dom': 18.2.1
   '@vercel/analytics': ^1.0.1
   autoprefixer: 10.4.14
+  canvas-confetti: ^1.6.0
   js-cookie: ^3.0.5
   next: 13.3.4
   postcss: 8.4.23
@@ -33,6 +35,7 @@ dependencies:
   '@types/react-dom': 18.2.1
   '@vercel/analytics': 1.0.1
   autoprefixer: 10.4.14_postcss@8.4.23
+  canvas-confetti: 1.6.0
   js-cookie: 3.0.5
   next: 13.3.4_biqbaboplfbrettd7655fr4n2y
   postcss: 8.4.23
@@ -44,6 +47,7 @@ dependencies:
   typescript: 5.0.4
 
 devDependencies:
+  '@types/canvas-confetti': 1.6.0
   '@types/js-cookie': 3.0.3
 
 packages:
@@ -309,6 +313,10 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /@types/canvas-confetti/1.6.0:
+    resolution: {integrity: sha512-Yq6rIccwcco0TLD5SMUrIM7Fk7Fe/C0jmNRxJJCLtAF6gebDkPuUjK5EHedxecm69Pi/aA+It39Ux4OHmFhjRw==}
+    dev: true
+
   /@types/js-cookie/3.0.3:
     resolution: {integrity: sha512-Xe7IImK09HP1sv2M/aI+48a20VX+TdRJucfq4vfRVy6nWN8PYPOEnlMRSgxJAgYQIXJVL8dZ4/ilAM7dWNaOww==}
     dev: true
@@ -451,6 +459,10 @@ packages:
 
   /caniuse-lite/1.0.30001482:
     resolution: {integrity: sha512-F1ZInsg53cegyjroxLNW9DmrEQ1SuGRTO1QlpA0o2/6OpQ0gFeDRoq1yFmnr8Sakn9qwwt9DmbxHB6w167OSuQ==}
+    dev: false
+
+  /canvas-confetti/1.6.0:
+    resolution: {integrity: sha512-ej+w/m8Jzpv9Z7W7uJZer14Ke8P2ogsjg4ZMGIuq4iqUOqY2Jq8BNW42iGmNfRwREaaEfFIczLuZZiEVSYNHAA==}
     dev: false
 
   /chokidar/3.5.3:

@@ -27,6 +27,15 @@ export const updateUserWithPlunk = async(supabase:any, id:string, plunkId:string
     return result;
 }
 
+export const updateUserApplicationPeriod = async(supabase:any, userId:string, applicationPeriodId:string) => {
+    const result = await supabase
+        .from('user_profile')
+        .update({ current_application_id: applicationPeriodId })
+        .eq('id', userId)
+        .select('*')
+    return result;
+}
+
 export const signOut = async (supabase:any, router:any) => {
     supabase.auth.signOut().then(() => router.push("/"));
 }
