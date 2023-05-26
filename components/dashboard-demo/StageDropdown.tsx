@@ -11,10 +11,12 @@ export default function Dropdown({
       <div>
         <Menu.Button
           className={`rounded-full outline-green-700 text-sm flex gap-2 items-center py-1 px-3 font-medium ${
-            currentStage.title === "Applied"
+            currentStage.title === "Saved"
               ? "bg-stone-200 text-stone-700"
               : currentStage.title === "Interviewing"
               ? "bg-green-100 text-green-700"
+              : currentStage.title === "Applied"
+              ? "bg-amber-100 text-amber-700"
               : "bg-red-100 text-red-700"
           }`}
         >
@@ -47,10 +49,12 @@ export default function Dropdown({
                   >
                     <Menu.Button
                       className={`rounded-full flex gap-2 items-center py-1 px-3 font-medium ${
-                        stage.title === "Applied"
+                        stage.title === "Saved"
                           ? "bg-stone-200 text-stone-700"
                           : stage.title === "Interviewing"
                           ? "bg-green-100 text-green-700"
+                          : stage.title === "Applied"
+                          ? "bg-amber-100 text-amber-700"
                           : "bg-red-100 text-red-700"
                       }`}
                     >

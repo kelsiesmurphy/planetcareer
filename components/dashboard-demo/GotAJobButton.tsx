@@ -1,17 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { X } from "react-feather";
-import { createJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
-import { updateUserApplicationPeriod } from "@/handlers/AuthHandler";
-import { updateJobApplicationPeriodEndDate } from "@/handlers/JobApplicationPeriodHandler";
 import trophy from "../../assets/trophy.svg";
 import Image from "next/image";
 import confetti from "canvas-confetti";
-import Router from "next/router";
 
-const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
+const GotAJobButton = () => {
   let [isOpen, setIsOpen] = useState(false);
-  const [confirmInput, setConfirmInput] = useState("");
 
   const handleConfetti = () => {
     confetti({
@@ -20,34 +15,12 @@ const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
     });
   };
 
-  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
-  const handleGotAJob = async () => {
-    try {
-      updateJobApplicationPeriodEndDate(
-        supabase,
-        userProfile.current_application_period_id
-      );
-      createJobApplicationPeriod(supabase, userProfile).then((periodId) => {
-        updateUserApplicationPeriod(supabase, userProfile.id, periodId).then(
-          (updatedUserProfile) => {
-            setUserProfile(updatedUserProfile);
-          }
-        );
-      });
-      handleConfetti();
-      setIsOpen(false);
-      await delay(3000);
-      Router.reload();
-    } catch (error) {
-      alert("Error submitting application");
-      console.log(error);
-    }
-  };
-
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="btn-secondary min-w-[50px] min-h-[50px]">
+      <button
+        onClick={() => setIsOpen(true)}
+        className="btn-secondary min-w-[50px] min-h-[50px]"
+      >
         <Image src={trophy} alt="" width="0" height="0" className="w-5" />{" "}
         <p className="hidden md:block">I got a job!</p>
       </button>
@@ -106,16 +79,10 @@ const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
                       Congratulations on your new role!
                     </h1>
                     <p className="text-sm text-stone-600">
-                      Typing 'CONFIRM' below will clear your list of applications, ready for if you ever need us again!
+                      We will clear your list of applications, ready for if you
+                      ever need us again!
                     </p>
                   </div>
-                  <input
-                    className="input w-full"
-                    onChange={(e) => setConfirmInput(e.target.value)}
-                    value={confirmInput}
-                    name="confirmInput"
-                    placeholder="CONFIRM"
-                  />
                 </Dialog.Title>
                 <div className="flex flex-wrap flex-1 gap-4">
                   <button
@@ -126,8 +93,7 @@ const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
                   </button>
                   <button
                     className="btn-primary flex-1 max-w-none"
-                    onClick={() => handleGotAJob()}
-                    disabled={confirmInput !== "CONFIRM"}
+                    onClick={() => handleConfetti()}
                   >
                     Confirm
                   </button>

@@ -6,6 +6,7 @@ import Navigation from "@/components/dashboard-demo/Navigation";
 import Table from "@/components/dashboard-demo/Table";
 import Account from "@/components/dashboard-demo/Account";
 import ComingSoon from "@/components/dashboard/job_board/ComingSoon";
+import GotAJobButton from "@/components/dashboard-demo/GotAJobButton";
 
 const sora = Sora({ subsets: ["latin"] });
 
@@ -40,14 +41,17 @@ export default function Dashboard() {
         />
         {pageSection === "job-hunt" && (
           <div className="flex-1 md:ml-[80px] space-y-12 py-12 md:px-6">
-            <h1
-              className={
-                sora.className +
-                " text-2xl px-6 md:px-0 md:text-3xl font-medium text-stone-900"
-              }
-            >
-              Welcome back, {firstName}
-            </h1>
+            <div className="flex justify-between items-center px-4 md:px-0">
+              <h1
+                className={
+                  sora.className +
+                  " text-2xl md:text-3xl font-medium text-stone-900"
+                }
+              >
+                Welcome back, {firstName}
+              </h1>
+              <GotAJobButton />
+            </div>
             <Table supabase={supabase} />
           </div>
         )}
