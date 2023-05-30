@@ -15,6 +15,6 @@ export const testimonialItems = [
     id: 3,
     name: "Kirsty",
     review:
-      "I am just beginning to apply to jobs and thought I'd crack out a classic spreadsheet until I saw that one of my CodeClan instructors had shared your app with us and it's so useful",
+      "I am just beginning to apply to jobs and thought I'd crack out a classic spreadsheet until I saw that one of my CodeClan instructors had shared your app with us and it's so useful!",
   },
 ];
