@@ -3,7 +3,8 @@ export const getApplicationsByPeriod = async (supabase:any, jobApplicationPeriod
         .from("application")
         .select("*")
         .eq("job_application_period_id", jobApplicationPeriod.id)
-        .select();
+        .select()
+        .order('created_at', { ascending: true })
     if (error && status !== 406) {
         throw error;
     }
