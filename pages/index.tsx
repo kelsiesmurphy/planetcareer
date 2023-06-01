@@ -7,6 +7,7 @@ import Footer from "@/components/index/Footer";
 import { Sora } from "next/font/google";
 import LoginButton from "@/components/index/LoginButton";
 import CookieConsent from "@/components/CookieConsent";
+import Testimonials from "@/components/index/Testimonials";
 
 const sora = Sora({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function Home() {
         <Hero font={sora}>
           <LoginButton session={session} />
         </Hero>
+        <Testimonials font={sora} />
         <Faq font={sora} />
         <Footer />
       </main>

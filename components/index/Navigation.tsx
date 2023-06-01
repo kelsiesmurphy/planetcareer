@@ -10,6 +10,12 @@ const Navigation = ({ children }: any) => {
         <a href="/">
           <Logo />
         </a>
+        <a
+          href="#testimonials"
+          className="hidden md:block text-stone-700 font-semibold"
+        >
+          Testimonials
+        </a>
         <a href="#faq" className="hidden md:block text-stone-700 font-semibold">
           FAQ
         </a>
