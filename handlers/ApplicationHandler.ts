@@ -69,7 +69,7 @@ export const updateApplication = async (supabase:any, applicationId:any, applica
             resume: application.Resume,
             cover_letter: application.CoverLetter,
             role: application.Role,
-            applied_date: new Date(),
+            applied_date: application.AppliedDate,
             closing_date: null,
             further_details: application.FurtherDetails, 
             company_name: application.Company.name,
