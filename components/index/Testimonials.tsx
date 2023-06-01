@@ -14,7 +14,7 @@ const Testimonials = ({ font }: any) => {
       >
         What our users say
       </h2>
-      <ul className="flex gap-4 flex-wrap">
+      <ul className="flex gap-4 flex-wrap justify-center items-start">
         {testimonialItems.map((testimonial) => {
           return (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
