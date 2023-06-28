@@ -44,7 +44,7 @@ const AddApplication = ({
     setValues({ ...values, [name]: value });
   };
 
-  const handleClose = () => {
+  const handleCloseAndClear = () => {
     setIsOpen(false);
     setSecondScreen(false);
     setValues({
@@ -64,6 +64,11 @@ const AddApplication = ({
       AppliedDate: new Date().toLocaleDateString("en-CA"),
       FurtherDetails: "",
     });
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setSecondScreen(false);
   };
 
   const submitApplication = () => {
@@ -129,7 +134,7 @@ const AddApplication = ({
                     </div>
                     <button
                       className="p-2.5 focus:outline-green-700"
-                      onClick={handleClose}
+                      onClick={handleCloseAndClear}
                     >
                       <X />
                     </button>
