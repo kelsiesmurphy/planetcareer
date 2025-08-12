@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { Trash2, X } from "react-feather";
+import { Trash2, X } from "lucide-react";
 
 const DeleteApplicationButton = ({ tableLine }: any) => {
   let [isOpen, setIsOpen] = useState(false);

@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { Trash2, X } from "react-feather";
+import { Trash2, X } from "lucide-react";
 import { deleteApplication } from "@/handlers/ApplicationHandler";
 
 const DeleteApplicationButton = ({
@@ -8,16 +8,16 @@ const DeleteApplicationButton = ({
   supabase,
   tableLine,
   tableLines,
-  setTableLines
+  setTableLines,
 }: any) => {
   let [isOpen, setIsOpen] = useState(false);
 
   const handleDeleteApplication = () => {
     try {
       deleteApplication(supabase, tableLine).then(() => {
-        let dupTableLines = [...tableLines]
-        dupTableLines.splice(tableLines.indexOf(tableLine), 1)
-        setTableLines(dupTableLines)
+        let dupTableLines = [...tableLines];
+        dupTableLines.splice(tableLines.indexOf(tableLine), 1);
+        setTableLines(dupTableLines);
       });
     } catch (error) {
       alert("Error submitting application");

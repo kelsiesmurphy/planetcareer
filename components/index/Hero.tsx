@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "react-feather";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import IframeDemo from "./IframeDemo";
 

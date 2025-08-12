@@ -11,7 +11,7 @@ import {
   subscribePlunkContact,
   unsubscribePlunkContact,
 } from "@/handlers/PlunkEmailHandler";
-import { LogOut } from "react-feather";
+import { LogOut } from "lucide-react";
 
 const Account = ({ session, supabase }: any) => {
   const user = useUser();

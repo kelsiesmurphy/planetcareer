@@ -1,6 +1,6 @@
 import { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Briefcase, Edit, X } from "react-feather";
+import { Briefcase, Edit, X } from "lucide-react";
 import { updateApplication } from "@/handlers/ApplicationHandler";
 import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";

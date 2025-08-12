@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { X } from "react-feather";
+import { X } from "lucide-react";
 import trophy from "../../assets/trophy.svg";
 import Image from "next/image";
 import confetti from "canvas-confetti";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { File, Trash2, UploadCloud } from "react-feather";
+import { File, Trash2, UploadCloud } from "lucide-react";
 
 export default function FileUpload({
   url,

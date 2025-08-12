@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Database } from "../../../utils/database.types";
-import { File, Trash2, UploadCloud } from "react-feather";
+import { File, Trash2, UploadCloud } from "lucide-react";
 
 export default function FileUploadResume({
   url,

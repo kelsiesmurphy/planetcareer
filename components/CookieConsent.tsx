@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
-import Link from "next/link";
-import { MouseEvent, useCallback, useEffect, useState } from "react";
-import { Flag } from "react-feather";
+import { MouseEvent, useEffect, useState } from "react";
+import { Flag } from "lucide-react";
 
 const USER_CONSENT_COOKIE_KEY = "cookie_consent_is_true";
 const USER_CONSENT_COOKIE_EXPIRE_DATE = 365;

@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "react-feather";
+import { ArrowUpRight } from "lucide-react";
 import FileUpload from "./Upload";
 
 const SecondScreen = ({

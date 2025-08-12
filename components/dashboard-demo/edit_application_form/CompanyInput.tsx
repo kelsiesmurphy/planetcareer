@@ -1,5 +1,5 @@
 import { useState, Fragment, useEffect } from "react";
-import { Check, ChevronDown, Search } from "react-feather";
+import { Check, ChevronDown, Search } from "lucide-react";
 import { Combobox, Transition } from "@headlessui/react";
 import Image from "next/image";
 

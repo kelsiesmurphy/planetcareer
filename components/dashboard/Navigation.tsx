@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { AlertCircle, X } from "react-feather";
+import { AlertCircle, X } from "lucide-react";
 import menuIcon from "../../assets/menu.svg";
 import layoutIcon from "../../assets/layout.svg";
 import briefcaseIcon from "../../assets/briefcase.svg";

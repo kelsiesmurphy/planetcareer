@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Globe, Paperclip } from "react-feather";
+import { Globe, Paperclip } from "lucide-react";
 import Dropdown from "./StageDropdown";
 import EditApplication from "./edit_application_form/EditApplication";
 import DeleteApplicationButton from "./DeleteApplicationButton";

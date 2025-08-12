@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AlertCircle, X } from "react-feather";
+import { AlertCircle, X } from "lucide-react";
 import { issueFormID } from "@/content/typeformIds";
 import Image from "next/image";
 import menuIcon from "../../assets/menu.svg";

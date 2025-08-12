@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "react-feather";
+import { ArrowUpRight } from "lucide-react";
 import FileUploadResume from "./UploadResume";
 import FileUploadCoverLetter from "./UploadCoverLetter";
 
@@ -7,7 +7,7 @@ const SecondScreen = ({
   submitEditedApplication,
   handleChange,
   values,
-  userProfileId
+  userProfileId,
 }: any) => {
   const handleChangeResume = (url: any, size: any) => {
     const result = {

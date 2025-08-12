@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { X } from "react-feather";
+import { X } from "lucide-react";
 import { createJobApplicationPeriod } from "@/handlers/JobApplicationPeriodHandler";
 import { updateUserApplicationPeriod } from "@/handlers/AuthHandler";
 import { updateJobApplicationPeriodEndDate } from "@/handlers/JobApplicationPeriodHandler";
@@ -47,7 +47,10 @@ const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="btn-secondary min-w-[50px] min-h-[50px]">
+      <button
+        onClick={() => setIsOpen(true)}
+        className="btn-secondary min-w-[50px] min-h-[50px]"
+      >
         <Image src={trophy} alt="" width="0" height="0" className="w-5" />{" "}
         <p className="hidden md:block">I got a job!</p>
       </button>
@@ -106,7 +109,8 @@ const GotAJobButton = ({ supabase, userProfile, setUserProfile }: any) => {
                       Congratulations on your new role!
                     </h1>
                     <p className="text-sm text-stone-600">
-                      Typing 'CONFIRM' below will clear your list of applications, ready for if you ever need us again!
+                      Typing 'CONFIRM' below will clear your list of
+                      applications, ready for if you ever need us again!
                     </p>
                   </div>
                   <input

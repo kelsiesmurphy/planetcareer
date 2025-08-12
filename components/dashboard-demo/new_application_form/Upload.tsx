@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { File, Trash2, UploadCloud } from "react-feather";
+import { File, Trash2, UploadCloud } from "lucide-react";
 
 export default function FileUpload({
   url,

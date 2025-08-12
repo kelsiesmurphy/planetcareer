@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from "react-feather";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const Pagination = ({
   demoTableItems,
