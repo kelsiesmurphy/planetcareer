@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   const firstName = "Jessica";
   const profileImage =
-    "https://xddplurlgjvqtjiyodqt.supabase.co/storage/v1/object/public/demo-applications-storage/demo-user-profile.png";
+    "https://gmjnlrjcqsdwdwsdawpt.supabase.co/storage/v1/object/public/demo-applications-storage/demo-user-profile.png";
 
   const [pageSection, setPageSection] = useState<
     "job-hunt" | "job-board" | "settings"
